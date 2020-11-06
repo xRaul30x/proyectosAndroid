@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.*;
 
 public class MainActivity extends AppCompatActivity {
-    TextView crono;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +108,8 @@ public class MainActivity extends AppCompatActivity {
     int min=0,seg=0,mili=0;
     Thread hilo;
     Boolean encendido = false;
-
+	TextView crono;
+	
     public void iniciarCrono(View view) {
         Button iniciar = (Button)findViewById(R.id.iniciar);
         Button reiniciar = (Button)findViewById(R.id.reiniciar);
