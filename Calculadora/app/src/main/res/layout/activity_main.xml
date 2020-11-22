@@ -4,15 +4,131 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#333A77"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_width="182dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="214dp"
+        android:layout_marginRight="214dp"
+        android:layout_marginBottom="680dp"
+        android:clickable="false"
+        android:text="CALCULADORA"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="408dp"
+        android:layout_height="476dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginBottom="144dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/num1"
+            android:layout_width="135dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="30dp"
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:paddingLeft="10dp"
+            android:text="0" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/signo"
+                android:layout_width="52dp"
+                android:layout_height="38dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="65dp"
+                android:layout_weight="1"
+                android:background="#939292"
+                android:paddingLeft="35dp"
+                android:text="+"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnSum"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:text="+"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnRes"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:text="-"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnDiv"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:text="/"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/num2"
+            android:layout_width="135dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:paddingLeft="5dp"
+            android:text="0" />
+
+        <LinearLayout
+            android:layout_width="319dp"
+            android:layout_height="95dp"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/calcular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:text="Calcular" />
+
+            <TextView
+                android:id="@+id/resultado"
+                android:layout_width="122dp"
+                android:layout_height="49dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:padding="15dp"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
