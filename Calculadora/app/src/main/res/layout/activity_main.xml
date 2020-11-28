@@ -91,6 +91,15 @@
                 android:layout_weight="1"
                 android:text="/"
                 android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnMult"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:text="*"
+                android:textSize="24sp" />
         </LinearLayout>
 
         <EditText

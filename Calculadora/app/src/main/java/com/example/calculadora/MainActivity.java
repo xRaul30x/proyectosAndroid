@@ -20,7 +20,9 @@ public class MainActivity extends AppCompatActivity {
         final Button suma = (Button)findViewById(R.id.btnSum);
         final Button resta = (Button)findViewById(R.id.btnRes);
         final Button division = (Button)findViewById(R.id.btnDiv);
+        final Button multiplicacion = (Button)findViewById(R.id.btnMult);
         final Button calcular = (Button)findViewById(R.id.calcular);
+
 
         final TextView signo = (TextView)findViewById(R.id.signo);
         final TextView resultado = (TextView)findViewById(R.id.resultado);
@@ -53,6 +55,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        multiplicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signo.setText("*");
+                signoOperacion[0] = "*";
+            }
+        });
+
         calcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
                         else{
                             resultado.setText( numero1/numero2+"" );
                         }
+                        break;
+                    case "*":
+
+                        resultado.setText( numero1*numero2+"" );
+
                         break;
                 }
 
