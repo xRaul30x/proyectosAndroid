@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -22,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
         //Circulos pintar = new Circulos(this);
         //Rectangulos pintar = new Rectangulos(this);
         //OvalosRectangulos pintar = new OvalosRectangulos(this);
-        Texto pintar = new Texto(this);
+        //Texto pintar = new Texto(this);
+        PintaTriangulos pintar = new PintaTriangulos(this);
 
         layout.addView(pintar);
     }

@@ -12,7 +12,7 @@ class PintaTriangulos extends View implements View.OnTouchListener
     public PintaTriangulos(Context context)
     {
         super(context);
-        setFocusable(true);
+        //setFocusable(true);
         this.setOnTouchListener(this);
     }
 
@@ -20,9 +20,9 @@ class PintaTriangulos extends View implements View.OnTouchListener
     {
         Paint pincel = new Paint();
         pincel.setStrokeWidth(3);
-        canvas.drawLine(cordX,cordY,cordX+80,cordY,pincel);
-        canvas.drawLine(cordX,cordY,cordX+40,cordY-70,pincel);
-        canvas.drawLine(cordX+80,cordY,cordX+40,cordY-70,pincel);
+        canvas.drawLine(cordX-40,cordY+0,cordX+40,cordY,pincel); //         _
+        canvas.drawLine(cordX-40,cordY+0,cordX+0,cordY-70,pincel);//  /
+        canvas.drawLine(cordX+40,cordY+0,cordX+0,cordY-70,pincel);//  \
     }
 
     @Override
