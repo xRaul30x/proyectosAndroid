@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
         //Rectangulos pintar = new Rectangulos(this);
         //OvalosRectangulos pintar = new OvalosRectangulos(this);
         //Texto pintar = new Texto(this);
-        PintaTriangulos pintar = new PintaTriangulos(this);
+        Espiral pintar = new Espiral(this);
+        //PintaTriangulos pintar = new PintaTriangulos(this);
 
         layout.addView(pintar);
     }

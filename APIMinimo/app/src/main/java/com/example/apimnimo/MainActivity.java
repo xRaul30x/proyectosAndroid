@@ -3,9 +3,12 @@ package com.example.apimnimo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.*;
+
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         botonSolucion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 TextView textoSol = (TextView)findViewById(R.id.textView4);
                 textoSol.setText(""); //vaciamos el texto anterior al pulsar el boton
 

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".checkBox">
+
+    <CheckBox
+        android:id="@+id/jueves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jueves"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.523"
+        android:onClick="onCheckboxClicked"/>
+
+
+    <CheckBox
+        android:id="@+id/domingo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Domingo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.742"
+        android:onClick="onCheckboxClicked"/>
+
+
+    <CheckBox
+        android:id="@+id/sabado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sabado"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.668"
+        android:onClick="onCheckboxClicked"/>
+
+
+    <CheckBox
+        android:id="@+id/lunes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lunes"
+        app:layout_constraintBottom_toTopOf="@+id/martes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.894"
+        android:onClick="onCheckboxClicked"/>
+
+
+    <CheckBox
+        android:id="@+id/martes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="51dp"
+        android:text="Martes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.399"
+        android:onClick="onCheckboxClicked"/>
+
+
+    <CheckBox
+        android:id="@+id/miercoles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Miercoles"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.548"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.447"
+        android:onClick="onCheckboxClicked"/>
+
+
+    <CheckBox
+        android:id="@+id/viernes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Viernes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.593"
+        android:onClick="onCheckboxClicked"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Que dia desea la alarma"
+        app:layout_constraintBottom_toTopOf="@+id/lunes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/wtf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="En sserio ????????????"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/domingo"
+        app:layout_constraintVertical_bias="0.086" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

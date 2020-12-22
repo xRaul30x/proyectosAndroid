@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Testing</string>
+    <string-array name="Paises">
+        <item>Spain</item>
+        <item>Alemania</item>
+        <item>Belgica</item>
+    </string-array>
+
+    <string-array name="ESP">
+        <item>Guadalupe</item>
+        <item>Lastres</item>
+        <item>Madrid</item>
+    </string-array>
+
+    <string-array name="GER">
+        <item>Berlin</item>
+        <item>Füssen</item>
+        <item>Köhl und Bamberg</item>
+    </string-array>
+
+    <string-array name="BEL">
+        <item>Brujas</item>
+        <item>Gante</item>
+        <item>Ambere</item>
+    </string-array>
+</resources>

@@ -26,49 +26,43 @@ public class MainActivity extends AppCompatActivity {
             case R.id.lun:
                 if (checked) {
                 Toast.makeText(getApplicationContext(), "Lunes añadido", Toast.LENGTH_SHORT).show();
+                }
                 break;
-            }
-                else break;
             case R.id.mar:
                 if (checked) {
                     Toast.makeText(getApplicationContext(), "martes añadido", Toast.LENGTH_SHORT).show();
-                    break;
                 }
-                else break;
+                break;
             case R.id.mie:
                 if (checked) {
                     Toast.makeText(getApplicationContext(), "miercoles añadido", Toast.LENGTH_SHORT).show();
-                    break;
                 }
-                else break;
+                break;
             case R.id.jue:
                 if (checked) {
                     Toast.makeText(getApplicationContext(), "jueves añadido", Toast.LENGTH_SHORT).show();
-                    break;
                 }
-                else break;
+                break;
             case R.id.vie:
                 if (checked) {
                     Toast.makeText(getApplicationContext(), "viernes añadido", Toast.LENGTH_SHORT).show();
-                    break;
                 }
-                else break;
+                break;
             case R.id.sab:
                 if (checked) {
                     Toast.makeText(getApplicationContext(), "sabado añadido", Toast.LENGTH_SHORT).show();
-                    break;
                 }
-                else break;
+                break;
             case R.id.dom:
                 if (checked) {
                     Toast.makeText(getApplicationContext(), "domingo añadido", Toast.LENGTH_SHORT).show();
                     res.setVisibility(View.VISIBLE);
-                    break;
+
                 }
                 else {
                     res.setVisibility(View.INVISIBLE);
-                    break;
                 }
+                break;
         }
 
     }

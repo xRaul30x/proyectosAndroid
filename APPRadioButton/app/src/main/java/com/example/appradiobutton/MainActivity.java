@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -25,21 +26,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 RadioGroup lista = (RadioGroup)findViewById(R.id.lista);
+
                 int idSeleccionado = lista.getCheckedRadioButtonId();
                 RadioButton seleccionado = (RadioButton)findViewById(idSeleccionado);
 
                 TextView respuesta = (TextView)findViewById(R.id.respuesta);
                 respuesta.setText(seleccionado.getContentDescription());
 
-                /*
-                    Otra forma:
 
-			    int idSeleccionado = lista.getCheckedRadioButtonId();
 
-		        lista = (RadioButton) findViewById(idSeleccionado);
-
-                Toast.makeText(MyAndroidAppActivity.this, lista.getText(), Toast.LENGTH_SHORT).show();
-                 */
             }
         });
     }

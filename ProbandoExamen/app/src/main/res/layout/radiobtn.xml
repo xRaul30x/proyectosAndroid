@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RadioGroup
+        android:id="@+id/RG"
+        android:layout_width="374dp"
+        android:layout_height="201dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Que pelicula te parece un futuro no muy lejano ?" />
+
+        <RadioButton
+            android:id="@+id/rbM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Matrix" />
+
+        <RadioButton
+            android:id="@+id/rbI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="In Time" />
+
+        <RadioButton
+            android:id="@+id/rbE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Elysium" />
+
+        <RadioButton
+            android:id="@+id/rbB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Blade Runner" />
+
+        <Button
+            android:id="@+id/btnE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enviar" />
+
+    </RadioGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>
