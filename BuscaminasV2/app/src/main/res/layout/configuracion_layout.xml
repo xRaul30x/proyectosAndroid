@@ -6,30 +6,16 @@
     android:layout_height="match_parent"
     android:background="#073B3A">
 
-    <RelativeLayout
-        android:id="@+id/layout"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_marginTop="20dp"
-        android:background="#0D825D"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-    </RelativeLayout>
-
     <Button
         android:id="@+id/atras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="294dp"
-        android:layout_marginLeft="294dp"
+        android:layout_marginStart="297dp"
+        android:layout_marginLeft="297dp"
         android:layout_marginTop="420dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginRight="29dp"
-        android:onClick="volver"
+        android:layout_marginEnd="26dp"
+        android:layout_marginRight="26dp"
+        android:layout_marginBottom="38dp"
         android:text="Atrás"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,5 +23,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
