@@ -15,7 +15,7 @@ public class Configuracion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.configuracion_layout);
 
-        Button atras = (Button)findViewById(R.id.atras);
+        Button atras = (Button)findViewById(R.id.volver);
         atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
