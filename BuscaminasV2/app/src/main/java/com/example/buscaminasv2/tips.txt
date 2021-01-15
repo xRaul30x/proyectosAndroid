@@ -13,10 +13,7 @@ banderaImg.setImageResource(R.drawable.bandera);
 
 //falta añadirlo al canvas
 
-
-
-
-
+//-------------------------------------------------------------------------------------
 
 
 ImageView banderaImg = new ImageView(this.getContext());
@@ -25,3 +22,33 @@ ImageView banderaImg = new ImageView(this.getContext());
                     Bitmap mapaBits = Bitmap.createBitmap(ancho/8,alto/8,Bitmap.Config.RGB_565);
                     canvas.drawBitmap(mapaBits,x,y,null);
                     banderaImg.setImageDrawable(new BitmapDrawable(getResources(), mapaBits));
+
+//------------------------------------------------------------------------------------------------------
+
+//añadir en el onTouch para autocompletar casillas
+
+if(casillas[fila][columna] != 0 && pulsada[fila][columna]){
+                System.out.println("casilla que no es 0");
+
+                int flagFound = 0;
+                try{ if(banderas[fila-1][columna-1]) flagFound++;  }catch (Exception e){}
+                try{ if(banderas[fila][columna-1]) flagFound++;  }catch (Exception e){}
+                try{ if(banderas[fila+1][columna-1]) flagFound++;  }catch (Exception e){}
+                try{ if(banderas[fila-1][columna]) flagFound++;  }catch (Exception e){}
+                try{ if(banderas[fila+1][columna]) flagFound++;  }catch (Exception e){}
+                try{ if(banderas[fila-1][columna+1]) flagFound++;  }catch (Exception e){}
+                try{ if(banderas[fila][columna+1]) flagFound++;  }catch (Exception e){}
+                try{ if(banderas[fila+1][columna+1]) flagFound++;  }catch (Exception e){}
+
+                if(flagFound == casillas[fila][columna]){
+                    try{ if(!banderas[fila-1][columna-1] && !pulsada[fila-1][columna-1]) pulsada[fila-1][columna-1]=true;  }catch (Exception e){}
+                    try{ if(!banderas[fila][columna-1] && !pulsada[fila][columna-1]) pulsada[fila][columna-1]=true; }catch (Exception e){}
+                    try{ if(!banderas[fila+1][columna-1] && !pulsada[fila+1][columna-1]) pulsada[fila+1][columna-1]=true;  }catch (Exception e){}
+                    try{ if(!banderas[fila-1][columna] && !pulsada[fila-1][columna]) pulsada[fila-1][columna]=true;  }catch (Exception e){}
+                    try{ if(!banderas[fila+1][columna] && !pulsada[fila+1][columna]) pulsada[fila+1][columna]=true;  }catch (Exception e){}
+                    try{ if(!banderas[fila-1][columna+1] && !pulsada[fila-1][columna+1]) pulsada[fila-1][columna+1]=true;  }catch (Exception e){}
+                    try{ if(!banderas[fila][columna+1] && !pulsada[fila][columna+1]) pulsada[fila][columna+1]=true;;  }catch (Exception e){}
+                    try{ if(!banderas[fila+1][columna+1] && !pulsada[fila+1][columna+1]) pulsada[fila+1][columna+1]=true;  }catch (Exception e){}
+                }
+
+            }

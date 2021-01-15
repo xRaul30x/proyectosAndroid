@@ -18,7 +18,7 @@ public class Tablero extends View implements View.OnTouchListener{
     int[][] casillas = new int[8][8];
     boolean[][] pulsada = new boolean[8][8];
     boolean[][] banderas = new boolean[8][8];
-    int bombas = 5;
+    int bombas = 6;
     int puntos = 0; //si los puntos llegan a 64-bombas (es decir destapar todas las casillas menos las bombas), has ganado
     int estadoDelJuego = 0;
 
@@ -193,7 +193,7 @@ public class Tablero extends View implements View.OnTouchListener{
     } //fin onDraw
 
     private void expandir() { //--------------------- expandir casillas
-        System.out.println("Intentamos expandir");
+        //System.out.println("Intentamos expandir");
 
         //Revisamos todas las casillas por cada iteración
         for (int f = 0; f < 8; f++) { //filas
@@ -227,13 +227,43 @@ public class Tablero extends View implements View.OnTouchListener{
             fila = (cordY/(alto/8)); //dividimos las coordenadas entre lo qe mide una casilla (ancho/8)
             columna = (cordX/(ancho/8));
 
-            if(Game.isModoBanderas()){ //si estamos en modo banderas, no podemos pulsar casillas, solo pintar banderas
+            if(Game.modoBanderas){ //si estamos en modo banderas, no podemos pulsar casillas, solo pintar banderas
 
-                banderas[fila][columna] = true;
+                if(!pulsada[fila][columna]){
+
+                    banderas[fila][columna] = true;
+                }
+
             }else{
 
                 pulsada[fila][columna] = true;
             }
+
+            //-----------destapamos alrededor de la casilla pulsada si contiene un número que no es 0 y si el número de la casilla coincide con el numero de banderas alrededor
+            if(casillas[fila][columna] != 0 && pulsada[fila][columna]){
+
+                int flagFound = 0;
+                try{ if(banderas[fila-1][columna-1]) flagFound++;  }catch (Exception e){}
+                try{ if(banderas[fila][columna-1]) flagFound++;  }catch (Exception e){}
+                try{ if(banderas[fila+1][columna-1]) flagFound++;  }catch (Exception e){}
+                try{ if(banderas[fila-1][columna]) flagFound++;  }catch (Exception e){}
+                try{ if(banderas[fila+1][columna]) flagFound++;  }catch (Exception e){}
+                try{ if(banderas[fila-1][columna+1]) flagFound++;  }catch (Exception e){}
+                try{ if(banderas[fila][columna+1]) flagFound++;  }catch (Exception e){}
+                try{ if(banderas[fila+1][columna+1]) flagFound++;  }catch (Exception e){}
+
+                if(flagFound == casillas[fila][columna]){
+                    try{ if(!banderas[fila-1][columna-1] && !pulsada[fila-1][columna-1]) pulsada[fila-1][columna-1]=true;  }catch (Exception e){}
+                    try{ if(!banderas[fila][columna-1] && !pulsada[fila][columna-1]) pulsada[fila][columna-1]=true; }catch (Exception e){}
+                    try{ if(!banderas[fila+1][columna-1] && !pulsada[fila+1][columna-1]) pulsada[fila+1][columna-1]=true;  }catch (Exception e){}
+                    try{ if(!banderas[fila-1][columna] && !pulsada[fila-1][columna]) pulsada[fila-1][columna]=true;  }catch (Exception e){}
+                    try{ if(!banderas[fila+1][columna] && !pulsada[fila+1][columna]) pulsada[fila+1][columna]=true;  }catch (Exception e){}
+                    try{ if(!banderas[fila-1][columna+1] && !pulsada[fila-1][columna+1]) pulsada[fila-1][columna+1]=true;  }catch (Exception e){}
+                    try{ if(!banderas[fila][columna+1] && !pulsada[fila][columna+1]) pulsada[fila][columna+1]=true;;  }catch (Exception e){}
+                    try{ if(!banderas[fila+1][columna+1] && !pulsada[fila+1][columna+1]) pulsada[fila+1][columna+1]=true;  }catch (Exception e){}
+                }
+            }//fin if
+
         }
 
 

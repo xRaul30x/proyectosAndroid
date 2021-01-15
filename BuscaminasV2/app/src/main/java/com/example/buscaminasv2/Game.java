@@ -27,12 +27,16 @@ public class Game extends AppCompatActivity {
     }
 
     public void volver(View view){
+
+        modoBanderas = false;
         finish();
         Intent intent = new Intent(view.getContext(),MenuPrincipal.class);
         startActivity(intent);
     }
 
     public void reiniciar(View view){
+
+        modoBanderas = false; //si no lo volvemos a poner, se queda pillado en true cuando volvemos a la app
         finish();
         Intent intent = new Intent(view.getContext(),Game.class);
         startActivity(intent);
@@ -56,8 +60,10 @@ public class Game extends AppCompatActivity {
         }
     }
 
+    /*
     public static boolean isModoBanderas(){
         if(modoBanderas) return true;
         else return false;
     }
+     */
 }
