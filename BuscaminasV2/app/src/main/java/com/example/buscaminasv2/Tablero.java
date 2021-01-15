@@ -18,7 +18,7 @@ public class Tablero extends View implements View.OnTouchListener{
     int[][] casillas = new int[8][8];
     boolean[][] pulsada = new boolean[8][8];
     boolean[][] banderas = new boolean[8][8];
-    int bombas = 6;
+    int bombas = 5;
     int puntos = 0; //si los puntos llegan a 64-bombas (es decir destapar todas las casillas menos las bombas), has ganado
     int estadoDelJuego = 0;
 
@@ -27,15 +27,18 @@ public class Tablero extends View implements View.OnTouchListener{
         super(context);
         this.setOnTouchListener(this);
 
+        //------------------inicializamos el tablero a 0 y las casillas pulsadas en false
         for (int f = 0; f < 8; f++) { //filas
             for (int c = 0; c < 8; c++) { //columnas
+
                 casillas[f][c] = 0;
                 pulsada[f][c] = false;
                 banderas[f][c] = false;
             }
         }
 
-        for (int i = 0; i < bombas; i++) { //7 bombas
+        //------------------colocamos las bombas
+        for (int i = 0; i < bombas; i++) {
 
             int fr, cr; //fila random, columna random
             fr = (int)(Math.random()*8);
@@ -54,6 +57,7 @@ public class Tablero extends View implements View.OnTouchListener{
         //si la casilla no es una bomba, miramos las bombas que tiene alrededor
         for (int f = 0; f < 8; f++) { //filas
             for (int c = 0; c < 8; c++) { //columnas
+
                 try{ if(casillas[f][c]!=10) if(casillas[f-1][c-1] == 10) casillas[f][c]++; }catch (Exception e){}
                 try{ if(casillas[f][c]!=10) if(casillas[f][c-1] == 10) casillas[f][c]++; }catch (Exception e){}
                 try{ if(casillas[f][c]!=10) if(casillas[f+1][c-1] == 10) casillas[f][c]++; }catch (Exception e){}
@@ -66,7 +70,7 @@ public class Tablero extends View implements View.OnTouchListener{
         }
 
 
-    }
+    } //fin constructor
 
     protected void onDraw(Canvas canvas){
 
@@ -77,7 +81,7 @@ public class Tablero extends View implements View.OnTouchListener{
         ancho = canvas.getWidth(); //1050
         alto = canvas.getHeight(); //1050
 
-        //pintamos las celdas
+        //----------------------------------pintamos las celdas
         pincel.setStrokeWidth(3);
         for(int i = 0; i < 8; i++){ //verticales
             canvas.drawLine(ancho/8*i, 0, ancho/8*i, alto, pincel); //linea
@@ -87,11 +91,11 @@ public class Tablero extends View implements View.OnTouchListener{
             canvas.drawLine(0, ancho/8*i, ancho, ancho/8*i, pincel); //linea
         }
 
-
+        //----------------------------------revisamos cada casilla para ver cuales podemos expandir y pintar
         for (int f = 0; f < 8; f++) { //filas
             for (int c = 0; c < 8; c++) { //columnas
 
-                expandir(f,c); //miramos cada casilla y expandimos
+                expandir(); //miramos cada casilla y expandimos
 
                 if(pulsada[f][c]){
 
@@ -131,9 +135,7 @@ public class Tablero extends View implements View.OnTouchListener{
                     int x = (c*(ancho/8)); //las columnas se incrementan según se incrementa la x
                     int y = (f*(alto/8));
 
-                    //pintamos bandera
-
-
+                    //-------------------------------pintamos bandera
                     Paint bandera = new Paint();
                     bandera.setStyle(Paint.Style.FILL);
                     bandera.setColor(Color.BLACK);
@@ -150,7 +152,7 @@ public class Tablero extends View implements View.OnTouchListener{
             }
         }
 
-        //-------------------------------------------------------------------------método de sumar puntos
+        //-------------------------------------------------------------------------Sumar puntos
         for (int f = 0; f < 8; f++) { //filas
             for (int c = 0; c < 8; c++) { //columnas
                 if(pulsada[f][c]) puntos++;
@@ -160,16 +162,14 @@ public class Tablero extends View implements View.OnTouchListener{
         if(puntos == (64-bombas)) estadoDelJuego = 2; //GANASTE!
         else puntos = 0; //si tras la comprobacion no tienes todos los puntos, aún no has ganado
 
-
-        //
+        //-------------------------Estado del juego: si es distinto de 0, has ganado o has perdido
         switch (estadoDelJuego){
-            case 0:
-
+            default:
                 break;
             case 1:
                 Paint paint2 = new Paint();
-                paint2.setColor(Color.BLACK);
-                //paint2.setARGB(200,0,0,0);
+                //paint2.setColor(Color.BLACK);
+                paint2.setARGB(170,0,0,0);
                 paint2.setStyle(Paint.Style.STROKE);
                 canvas.drawPaint(paint2);
 
@@ -179,7 +179,8 @@ public class Tablero extends View implements View.OnTouchListener{
                 break;
             case 2:
                 Paint paint = new Paint();
-                paint.setColor(Color.BLACK);
+                //paint.setColor(Color.BLACK);
+                paint.setARGB(170,0,0,0);
                 paint.setStyle(Paint.Style.FILL);
                 canvas.drawPaint(paint);
 
@@ -189,13 +190,15 @@ public class Tablero extends View implements View.OnTouchListener{
                 break;
 
         }
-    }
+    } //fin onDraw
 
-    private void expandir(int f, int c) { //--------------------- expandir casillas
+    private void expandir() { //--------------------- expandir casillas
         System.out.println("Intentamos expandir");
 
-        for (f = 0; f < 8; f++) { //filas
-            for (c = 0; c < 8; c++) { //columnas
+        //Revisamos todas las casillas por cada iteración
+        for (int f = 0; f < 8; f++) { //filas
+            for (int c = 0; c < 8; c++) { //columnas
+
                 if(pulsada[f][c] && casillas[f][c] == 0){
 
                         try{ pulsada[f-1][c-1] = true;  }catch (Exception e){}
@@ -206,7 +209,6 @@ public class Tablero extends View implements View.OnTouchListener{
                         try{ pulsada[f-1][c+1] = true;  }catch (Exception e){}
                         try{ pulsada[f][c+1] = true;  }catch (Exception e){}
                         try{ pulsada[f+1][c+1] = true;  }catch (Exception e){}
-
                 }
             }
         }
@@ -215,19 +217,23 @@ public class Tablero extends View implements View.OnTouchListener{
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        cordY = (int) event.getY();
-        cordX = (int) event.getX();
 
+        //-----------------------------------Si estado de juego es distinto de 0 es que has perdido o has ganado
+        if(estadoDelJuego == 0){
 
-        fila = (cordY/(alto/8)); //dividimos las coordenadas entre lo qe mide una casilla (ancho/8)
-        columna = (cordX/(ancho/8));
+            cordY = (int) event.getY();
+            cordX = (int) event.getX();
 
-        if(Game.isModoBanderas()){ //si estamos en modo banderas, no podemos pulsar casillas, solo pintar banderas
+            fila = (cordY/(alto/8)); //dividimos las coordenadas entre lo qe mide una casilla (ancho/8)
+            columna = (cordX/(ancho/8));
 
-            banderas[fila][columna] = true;
-        }else{
+            if(Game.isModoBanderas()){ //si estamos en modo banderas, no podemos pulsar casillas, solo pintar banderas
 
-            pulsada[fila][columna] = true;
+                banderas[fila][columna] = true;
+            }else{
+
+                pulsada[fila][columna] = true;
+            }
         }
 
 
