@@ -1,0 +1,27 @@
+------------------Mapa de bits:
+
+Bitmap b= BitmapFactory.decodeResource(getResources(),R.drawable.miImagen);
+canvas.drawBitmap(b,x, y, new Paint());
+
+//faltaria reescalar las imágenes porque salen muy grandes
+
+
+---------------Image View:
+
+ImageView banderaImg = new ImageView(this.getContext());
+banderaImg.setImageResource(R.drawable.bandera);
+
+//falta añadirlo al canvas
+
+
+
+
+
+
+
+ImageView banderaImg = new ImageView(this.getContext());
+                    Bitmap banderaMap= BitmapFactory.decodeResource(getResources(),R.drawable.bandera);
+
+                    Bitmap mapaBits = Bitmap.createBitmap(ancho/8,alto/8,Bitmap.Config.RGB_565);
+                    canvas.drawBitmap(mapaBits,x,y,null);
+                    banderaImg.setImageDrawable(new BitmapDrawable(getResources(), mapaBits));
