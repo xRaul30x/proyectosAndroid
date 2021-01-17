@@ -115,7 +115,6 @@ public class Tablero extends View implements View.OnTouchListener{
                         canvas.drawText("X", c*(ancho/8)+50, f*(alto/8)+100, texto);
 
                         estadoDelJuego = 1;
-                        break;
 
                     }else if(casillas[f][c] == 0){
 
@@ -166,7 +165,16 @@ public class Tablero extends View implements View.OnTouchListener{
         switch (estadoDelJuego){
             default:
                 break;
-            case 1:
+            case 1://GAME OVER
+
+                //--Destapamos todas las bombas
+                for (int f = 0; f < 8; f++) {
+                    for (int c = 0; c < 8; c++) {
+                        if(casillas[f][c] == 10) pulsada[f][c] = true;
+                    }
+                }
+
+                //--Pintamos el fondo de Game Over
                 Paint paint2 = new Paint();
                 //paint2.setColor(Color.BLACK);
                 paint2.setARGB(170,0,0,0);
@@ -177,7 +185,8 @@ public class Tablero extends View implements View.OnTouchListener{
                 paint2.setTextSize(150);
                 canvas.drawText("GAME OVER", 70, 500, paint2);
                 break;
-            case 2:
+            case 2: //--HAS GANADO
+
                 Paint paint = new Paint();
                 //paint.setColor(Color.BLACK);
                 paint.setARGB(170,0,0,0);
