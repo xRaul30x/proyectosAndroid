@@ -215,6 +215,7 @@ public class Tablero extends View implements View.OnTouchListener{
 
     }
 
+    int veces = 0; //variable para que el valor de la bandera cambie una vez cuando bajamos el dedo (case 1) pero no vuelva a cambiar cuando lo levantamos (case 2)
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
@@ -229,19 +230,36 @@ public class Tablero extends View implements View.OnTouchListener{
 
             if(Game.modoBanderas){ //si estamos en modo banderas, no podemos pulsar casillas, solo pintar banderas
 
-                if(!pulsada[fila][columna]){
+                if(!pulsada[fila][columna]){ //solo si la casilla no está pulsada podemos poder una bandera
 
-                    banderas[fila][columna] = true;
+                    veces++;
+                    switch (veces){
+                        case 1:
+                            banderas[fila][columna] = !banderas[fila][columna];
+                            break;
+                        case 2:
+                            veces = 0;
+                            break;
+                    }
+
                 }
 
             }else{
 
+                if(!pulsada[fila][columna]){
+
+                    banderas[fila][columna] = false;
+                }
+
                 pulsada[fila][columna] = true;
+
+
             }
 
             //-----------destapamos alrededor de la casilla pulsada si contiene un número que no es 0 y si el número de la casilla coincide con el numero de banderas alrededor
             if(casillas[fila][columna] != 0 && pulsada[fila][columna]){
 
+                //----comprobamos las 8 casillas de alrededor en busca de banderas
                 int flagFound = 0;
                 try{ if(banderas[fila-1][columna-1]) flagFound++;  }catch (Exception e){}
                 try{ if(banderas[fila][columna-1]) flagFound++;  }catch (Exception e){}
@@ -252,6 +270,7 @@ public class Tablero extends View implements View.OnTouchListener{
                 try{ if(banderas[fila][columna+1]) flagFound++;  }catch (Exception e){}
                 try{ if(banderas[fila+1][columna+1]) flagFound++;  }catch (Exception e){}
 
+                //----rellenamos las 8 casillas de alrededor que no sean banderas y que no estén ya pulsadas
                 if(flagFound == casillas[fila][columna]){
                     try{ if(!banderas[fila-1][columna-1] && !pulsada[fila-1][columna-1]) pulsada[fila-1][columna-1]=true;  }catch (Exception e){}
                     try{ if(!banderas[fila][columna-1] && !pulsada[fila][columna-1]) pulsada[fila][columna-1]=true; }catch (Exception e){}
@@ -264,7 +283,7 @@ public class Tablero extends View implements View.OnTouchListener{
                 }
             }//fin if
 
-        }
+        }//fin estado = 0
 
 
         invalidate();
