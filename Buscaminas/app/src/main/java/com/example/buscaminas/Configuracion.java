@@ -3,12 +3,13 @@ package com.example.buscaminas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.*;
-import android.widget.RelativeLayout;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Configuracion  extends AppCompatActivity {
+import com.example.buscaminasv2.R;
+
+public class Configuracion extends AppCompatActivity {
 
 
     @Override
@@ -16,7 +17,7 @@ public class Configuracion  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.configuracion_layout);
 
-        Button atras = (Button)findViewById(R.id.atras);
+        Button atras = (Button)findViewById(R.id.volver);
         atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

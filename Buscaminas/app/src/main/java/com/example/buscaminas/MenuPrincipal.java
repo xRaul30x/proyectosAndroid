@@ -1,14 +1,15 @@
 package com.example.buscaminas;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.buscaminasv2.R;
 
 public class MenuPrincipal extends AppCompatActivity {
 
@@ -24,7 +25,7 @@ public class MenuPrincipal extends AppCompatActivity {
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), Buscaminas.class);
+                Intent intent = new Intent(v.getContext(), Game.class);
                 startActivity(intent);
             }
         });
