@@ -21,38 +21,6 @@
 
     </RelativeLayout>
 
-    <CheckBox
-        android:id="@+id/banderas"
-        android:layout_width="61dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginEnd="262dp"
-        android:layout_marginRight="262dp"
-        android:layout_marginBottom="179dp"
-        android:onClick="onCheckboxClicked"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="71dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginEnd="324dp"
-        android:layout_marginRight="324dp"
-        android:layout_marginBottom="179dp"
-        android:src="@drawable/bandera"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/reiniciar"
         android:layout_width="wrap_content"

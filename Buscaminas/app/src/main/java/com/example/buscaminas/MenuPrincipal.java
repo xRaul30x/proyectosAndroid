@@ -9,8 +9,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.buscaminasv2.R;
-
 public class MenuPrincipal extends AppCompatActivity {
 
     @Override

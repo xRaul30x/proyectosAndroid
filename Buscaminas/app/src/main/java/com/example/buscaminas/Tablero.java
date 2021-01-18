@@ -17,7 +17,6 @@ public class Tablero extends View implements View.OnTouchListener{
     int columna=0;
     int[][] casillas = new int[8][8];
     boolean[][] pulsada = new boolean[8][8];
-    boolean[][] banderas = new boolean[8][8];
     int bombas = 6;
     int puntos = 0; //si los puntos llegan a 64-bombas (es decir destapar todas las casillas menos las bombas), has ganado
     int estadoDelJuego = 0;
@@ -33,7 +32,6 @@ public class Tablero extends View implements View.OnTouchListener{
 
                 casillas[f][c] = 0;
                 pulsada[f][c] = false;
-                banderas[f][c] = false;
             }
         }
 
@@ -129,24 +127,7 @@ public class Tablero extends View implements View.OnTouchListener{
                         canvas.drawText(casillas[f][c]+"", c*(ancho/8)+50, f*(alto/8)+100, texto);
 
                     }
-                }else if(banderas[f][c]){ //si la casilla no ha sido destapada, es que hemos puesto una bandera
-
-                    int x = (c*(ancho/8)); //las columnas se incrementan según se incrementa la x
-                    int y = (f*(alto/8));
-
-                    //-------------------------------pintamos bandera
-                    Paint bandera = new Paint();
-                    bandera.setStyle(Paint.Style.FILL);
-                    bandera.setColor(Color.BLACK);
-
-                    canvas.drawRect(x+ancho/32, y+alto/32,x+(ancho/64),y+4*(alto/32),bandera);// I
-
-                    bandera.setStrokeWidth(2);
-
-                    canvas.drawLine(x+ancho/32,y+alto/32,x+3*ancho/32,y+2*alto/32,pincel);//  \
-                    canvas.drawLine(x+ancho/32,y+3*alto/32,x+3*ancho/32,y+2*alto/32,pincel);//  /
-
-                }
+                }//fin if pulsada
 
             }
         }
@@ -224,7 +205,6 @@ public class Tablero extends View implements View.OnTouchListener{
 
     }
 
-    int veces = 0; //variable para que el valor de la bandera cambie una vez cuando bajamos el dedo (case 1) pero no vuelva a cambiar cuando lo levantamos (case 2)
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
@@ -237,60 +217,8 @@ public class Tablero extends View implements View.OnTouchListener{
             fila = (cordY/(alto/8)); //dividimos las coordenadas entre lo qe mide una casilla (ancho/8)
             columna = (cordX/(ancho/8));
 
-            if(Game.modoBanderas){ //si estamos en modo banderas, no podemos pulsar casillas, solo pintar banderas
 
-                if(!pulsada[fila][columna]){ //solo si la casilla no está pulsada podemos poder una bandera
-
-                    veces++;
-                    switch (veces){
-                        case 1:
-                            banderas[fila][columna] = !banderas[fila][columna];
-                            break;
-                        case 2:
-                            veces = 0;
-                            break;
-                    }
-
-                }
-
-            }else{
-
-                if(!pulsada[fila][columna]){
-
-                    banderas[fila][columna] = false;
-                }
-
-                pulsada[fila][columna] = true;
-
-
-            }
-
-            //-----------destapamos alrededor de la casilla pulsada si contiene un número que no es 0 y si el número de la casilla coincide con el numero de banderas alrededor
-            if(casillas[fila][columna] != 0 && pulsada[fila][columna]){
-
-                //----comprobamos las 8 casillas de alrededor en busca de banderas
-                int flagFound = 0;
-                try{ if(banderas[fila-1][columna-1]) flagFound++;  }catch (Exception e){}
-                try{ if(banderas[fila][columna-1]) flagFound++;  }catch (Exception e){}
-                try{ if(banderas[fila+1][columna-1]) flagFound++;  }catch (Exception e){}
-                try{ if(banderas[fila-1][columna]) flagFound++;  }catch (Exception e){}
-                try{ if(banderas[fila+1][columna]) flagFound++;  }catch (Exception e){}
-                try{ if(banderas[fila-1][columna+1]) flagFound++;  }catch (Exception e){}
-                try{ if(banderas[fila][columna+1]) flagFound++;  }catch (Exception e){}
-                try{ if(banderas[fila+1][columna+1]) flagFound++;  }catch (Exception e){}
-
-                //----rellenamos las 8 casillas de alrededor que no sean banderas y que no estén ya pulsadas
-                if(flagFound == casillas[fila][columna]){
-                    try{ if(!banderas[fila-1][columna-1] && !pulsada[fila-1][columna-1]) pulsada[fila-1][columna-1]=true;  }catch (Exception e){}
-                    try{ if(!banderas[fila][columna-1] && !pulsada[fila][columna-1]) pulsada[fila][columna-1]=true; }catch (Exception e){}
-                    try{ if(!banderas[fila+1][columna-1] && !pulsada[fila+1][columna-1]) pulsada[fila+1][columna-1]=true;  }catch (Exception e){}
-                    try{ if(!banderas[fila-1][columna] && !pulsada[fila-1][columna]) pulsada[fila-1][columna]=true;  }catch (Exception e){}
-                    try{ if(!banderas[fila+1][columna] && !pulsada[fila+1][columna]) pulsada[fila+1][columna]=true;  }catch (Exception e){}
-                    try{ if(!banderas[fila-1][columna+1] && !pulsada[fila-1][columna+1]) pulsada[fila-1][columna+1]=true;  }catch (Exception e){}
-                    try{ if(!banderas[fila][columna+1] && !pulsada[fila][columna+1]) pulsada[fila][columna+1]=true;;  }catch (Exception e){}
-                    try{ if(!banderas[fila+1][columna+1] && !pulsada[fila+1][columna+1]) pulsada[fila+1][columna+1]=true;  }catch (Exception e){}
-                }
-            }//fin if
+            pulsada[fila][columna] = true;
 
         }//fin estado = 0
 
