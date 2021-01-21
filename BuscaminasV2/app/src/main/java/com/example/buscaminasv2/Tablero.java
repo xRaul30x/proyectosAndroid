@@ -18,7 +18,7 @@ public class Tablero extends View implements View.OnTouchListener{
     int[][] casillas = new int[8][8];
     boolean[][] pulsada = new boolean[8][8];
     boolean[][] banderas = new boolean[8][8];
-    int bombas = 6;
+    int bombas = MenuPrincipal.bombas;
     int puntos = 0; //si los puntos llegan a 64-bombas (es decir destapar todas las casillas menos las bombas), has ganado
     int estadoDelJuego = 0;
 
@@ -82,18 +82,21 @@ public class Tablero extends View implements View.OnTouchListener{
         alto = canvas.getHeight(); //1050
 
         //----------------------------------pintamos las celdas
+
+        int unidad = ancho/8;
+
         pincel.setStrokeWidth(3);
         for(int i = 0; i < 8; i++){ //verticales
-            canvas.drawLine(ancho/8*i, 0, ancho/8*i, alto, pincel); //linea
+            canvas.drawLine(unidad*i, 0, unidad*i, alto, pincel); //linea
         }
 
         for(int i = 0; i < 8; i++){ //horizontales
-            canvas.drawLine(0, ancho/8*i, ancho, ancho/8*i, pincel); //linea
+            canvas.drawLine(0, unidad*i, ancho, unidad*i, pincel); //linea
         }
 
         //----------------------------------revisamos cada casilla para ver cuales podemos expandir y pintar
         for (int f = 0; f < 8; f++) { //filas
-            for (int c = 0; c < 8; c++) { //columnas
+                for (int c = 0; c < 8; c++) { //columnas
 
                 expandir(); //miramos cada casilla y expandimos
 
@@ -104,7 +107,7 @@ public class Tablero extends View implements View.OnTouchListener{
                     casilla.setARGB(255, 50, 50, 50);//255, 192, 188, 181
                     int x = (c*(ancho/8)); //las columnas se incrementan según se incrementa la x
                     int y = (f*(alto/8));
-                    canvas.drawRect(x, y,x+(ancho/8),y+(alto/8),casilla);
+                    canvas.drawRect(x, y,x+(ancho/8),y+unidad,casilla);
 
                     Paint texto = new Paint();
 
@@ -112,7 +115,7 @@ public class Tablero extends View implements View.OnTouchListener{
 
                         texto.setColor(Color.RED);
                         texto.setTextSize(50);
-                        canvas.drawText("X", c*(ancho/8)+50, f*(alto/8)+100, texto);
+                        canvas.drawText("X", c*unidad+50, f*unidad+100, texto);
 
                         estadoDelJuego = 1;
 
@@ -120,19 +123,19 @@ public class Tablero extends View implements View.OnTouchListener{
 
                         texto.setColor(Color.WHITE);
                         texto.setTextSize(50);
-                        canvas.drawText(" ", c*(ancho/8)+50, f*(alto/8)+100, texto);
+                        canvas.drawText(" ", c*unidad+50, f*unidad+100, texto);
 
                     }else{ //no hay bomba ni se expande
 
                         texto.setColor(Color.WHITE);
                         texto.setTextSize(50);
-                        canvas.drawText(casillas[f][c]+"", c*(ancho/8)+50, f*(alto/8)+100, texto);
+                        canvas.drawText(casillas[f][c]+"", c*unidad+50, f*unidad+100, texto);
 
                     }
                 }else if(banderas[f][c]){ //si la casilla no ha sido destapada, es que hemos puesto una bandera
 
-                    int x = (c*(ancho/8)); //las columnas se incrementan según se incrementa la x
-                    int y = (f*(alto/8));
+                    int x = (c*unidad); //las columnas se incrementan según se incrementa la x
+                    int y = (f*unidad);
 
                     //-------------------------------pintamos bandera
                     Paint bandera = new Paint();
@@ -253,14 +256,12 @@ public class Tablero extends View implements View.OnTouchListener{
 
                 }
 
-            }else{
+            }else{ //modo normal (destapar casillas)
 
-                if(!pulsada[fila][columna]){
+                if(!pulsada[fila][columna] && !banderas[fila][columna]){ //solo destapamos si no estaba pulsada y no habia una bandera
 
-                    banderas[fila][columna] = false;
+                    pulsada[fila][columna] = true;
                 }
-
-                pulsada[fila][columna] = true;
 
 
             }

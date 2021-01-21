@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MenuPrincipal extends AppCompatActivity {
 
+    static int bombas = 6; //esta variable puede ser cambiada desde configuración y se utiliza en Tablero
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,8 @@ public class MenuPrincipal extends AppCompatActivity {
                 alert.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+                        bombas = 6; //reiniciamos la variable por si ha sido cambiada durante el juego
                         finish();
                     }
                 });
