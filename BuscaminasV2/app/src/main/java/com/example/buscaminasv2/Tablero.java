@@ -105,9 +105,9 @@ public class Tablero extends View implements View.OnTouchListener{
                     Paint casilla = new Paint();
                     casilla.setStrokeWidth(2);
                     casilla.setARGB(255, 50, 50, 50);//255, 192, 188, 181
-                    int x = (c*(ancho/8)); //las columnas se incrementan según se incrementa la x
-                    int y = (f*(alto/8));
-                    canvas.drawRect(x, y,x+(ancho/8),y+unidad,casilla);
+                    int x = (c*unidad); //las columnas se incrementan según se incrementa la x
+                    int y = (f*unidad);
+                    canvas.drawRect(x, y,x+unidad,y+unidad,casilla);
 
                     Paint texto = new Paint();
 

@@ -9,8 +9,8 @@
 
     <RelativeLayout
         android:id="@+id/layout"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
+        android:layout_width="390dp"
+        android:layout_height="390dp"
         android:layout_marginTop="20dp"
         android:background="#0D825D"
         app:layout_constraintBottom_toBottomOf="parent"
