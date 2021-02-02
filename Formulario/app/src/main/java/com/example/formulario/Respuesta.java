@@ -13,10 +13,18 @@ public class Respuesta extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resp_layout);
 
+        /*
         String nombre = getIntent().getStringExtra("nombre");
         String  nacimiento = getIntent().getStringExtra("nacimiento");
         String genero = getIntent().getStringExtra("genero");
         String mayorDeEdad = getIntent().getStringExtra("mayorDeEdad");
+        */
+
+        Bundle datos = getIntent().getExtras();
+        String nombre = datos.getString("nombre");
+        String  nacimiento = datos.getString("nacimiento");
+        String genero = datos.getString("genero");
+        String mayorDeEdad = datos.getString("mayorDeEdad");
 
         TextView nb = (TextView)findViewById(R.id.nombre);
         nb.setText(nombre);
@@ -34,8 +42,18 @@ public class Respuesta extends AppCompatActivity {
     }
 
     public void editarDatos(View view){
-        //finish();
-        Intent intent = new Intent(view.getContext(), Formulario.class);
-        startActivity(intent);
+        Intent intent = new Intent(this, Formulario.class);
+        setResult(RESULT_CANCELED, intent);
+        finish();
+
     }
+
+    public void guardarDatos(View view){
+        Intent intent = new Intent(this, Formulario.class);
+        setResult(RESULT_OK, intent);
+        finish();
+
+    }
+
+
 }

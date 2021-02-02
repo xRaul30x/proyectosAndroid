@@ -26,6 +26,18 @@ public class Formulario extends AppCompatActivity {
         setContentView(R.layout.form_layout);
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            Toast.makeText(getApplicationContext(), "DATOS CORRECTOS", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "DATOS INCORRECTOS", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
     public void onCheckboxClicked(View view) {
 
         boolean checked = ((CheckBox) view).isChecked();
@@ -87,7 +99,7 @@ public class Formulario extends AppCompatActivity {
             intent.putExtra("genero", genero);
             intent.putExtra("mayorDeEdad", mayorDeEdad);
 
-            startActivity(intent);
+            startActivityForResult(intent,0);
         }else{
             Toast toast = Toast.makeText(getApplicationContext(), "Hay errores en el formulario", Toast.LENGTH_SHORT);
             toast.show();

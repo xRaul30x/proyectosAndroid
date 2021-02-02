@@ -41,6 +41,7 @@
             android:layout_marginEnd="289dp"
             android:layout_marginRight="289dp"
             android:contentDescription="Grande Neo"
+            android:onClick="onRadioButtonClicked"
             android:text="Matrix"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
