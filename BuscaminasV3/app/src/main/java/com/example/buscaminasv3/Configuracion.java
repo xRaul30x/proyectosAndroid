@@ -20,7 +20,6 @@ public class Configuracion extends AppCompatActivity {
     String dificultad;
     EditText nBombasText;
     RadioGroup dificultades;
-    TextView difActual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,6 @@ public class Configuracion extends AppCompatActivity {
 
         nBombasText = (EditText)findViewById(R.id.nBombas);
         dificultades = (RadioGroup)findViewById(R.id.radioDificulty);
-        difActual = (TextView)findViewById(R.id.difActual);
 
         cargarPrefs();
     }
@@ -38,21 +36,48 @@ public class Configuracion extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
 
-        int nBombas = Integer.parseInt(nBombasText.getText().toString());
-
         int idSeleccionado = dificultades.getCheckedRadioButtonId();
         RadioButton seleccionado = (RadioButton)findViewById(idSeleccionado);
         String dificultadSeleccionada = seleccionado.getContentDescription().toString();
 
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("nBombas",nBombas);
-        editor.putString("dificultad",dificultadSeleccionada);
+        int nBombas = Integer.parseInt(nBombasText.getText().toString());
 
-        editor.commit();
+        boolean correcto = false;
 
-        Toast toast = Toast.makeText(getApplicationContext(), "Cambios guardados", Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.BOTTOM, 0, 0);
-        toast.show();
+        switch (dificultadSeleccionada){
+            case "facil":
+
+                if(nBombas > 0 && nBombas < 25) correcto = true;
+                break;
+            case "normal":
+
+                if(nBombas > 0 && nBombas < 64) correcto = true;
+                break;
+            case "dificil":
+
+                if(nBombas > 0 && nBombas < 144) correcto = true;
+                break;
+        }
+
+        if(correcto){
+            SharedPreferences.Editor editor = preferences.edit(); //editor de preferencias
+            editor.putInt("nBombas",nBombas);
+            editor.putString("dificultad",dificultadSeleccionada);
+
+            editor.commit();
+
+            Toast toast = Toast.makeText(getApplicationContext(), "Cambios guardados", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.BOTTOM, 0, 0);
+            toast.show();
+        }else{
+
+            Toast toast = Toast.makeText(getApplicationContext(), "No se guardaron los cambios (número de bombas fuera de rango)", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.BOTTOM, 0, 0);
+            toast.show();
+        }
+
+
+
 
     }
 
@@ -63,7 +88,28 @@ public class Configuracion extends AppCompatActivity {
         String dificultad = preferences.getString("dificultad","normal");
 
         nBombasText.setText(bombas+"");
-        difActual.setText(dificultad.toUpperCase());
+
+        RadioButton seleccionar;
+
+        switch (dificultad){
+            case "facil":
+
+                seleccionar = (RadioButton) findViewById(R.id.facil);
+                seleccionar.setChecked(true);
+                break;
+            case "normal":
+
+                seleccionar = (RadioButton) findViewById(R.id.normal);
+                seleccionar.setChecked(true);
+                break;
+            case "dificil":
+
+                seleccionar = (RadioButton) findViewById(R.id.dificil);
+                seleccionar.setChecked(true);
+                break;
+            default:
+                break;
+        }
     }
 
     public void irAtras(View view){

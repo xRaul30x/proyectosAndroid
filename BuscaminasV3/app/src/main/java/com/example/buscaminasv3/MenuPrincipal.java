@@ -1,8 +1,10 @@
 package com.example.buscaminasv3;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,7 +54,12 @@ public class MenuPrincipal extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        //bombas = 6; //reiniciamos la variable por si ha sido cambiada durante el juego
+                        //antes de salir se reinicia la configuración
+                        SharedPreferences preferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit(); //editor de preferencias
+                        editor.putString("dificultad","normal");
+                        editor.putInt("nBombas",10);
+                        editor.commit();
                         finish();
                     }
                 });
