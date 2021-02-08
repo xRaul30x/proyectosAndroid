@@ -16,8 +16,6 @@ public class Tablero extends View implements View.OnTouchListener{
     int fila,columna; //posicion de la casilla
     int unidad; //lo que mide una casilla
 
-    boolean[][] pulsada;
-
     public Tablero(Context context) {
 
         super(context);
