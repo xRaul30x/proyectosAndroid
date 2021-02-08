@@ -37,6 +37,16 @@
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/refresh"
+                android:layout_width="6dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="actualizarView"
+                android:text="F5"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
                 android:id="@+id/add"
                 android:layout_width="6dp"
                 android:layout_height="match_parent"
@@ -62,16 +72,26 @@
             android:background="#D3D1D1"
             android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/borrar"
+                android:layout_width="264dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="borrar"
+                android:text="borrar"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
             <RelativeLayout
                 android:id="@+id/espacio"
-                android:layout_width="327dp"
+                android:layout_width="247dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
             </RelativeLayout>
 
             <Button
-                android:id="@+id/atras"
+                android:id="@+id/cancelar"
                 android:layout_width="215dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

@@ -25,7 +25,7 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/titulo"
+                android:id="@+id/titulo_text"
                 android:layout_width="102dp"
                 android:layout_height="59dp"
                 android:layout_weight="1"
@@ -36,7 +36,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/titulo"
                 android:layout_width="match_parent"
                 android:layout_height="62dp"
                 android:layout_weight="1"
@@ -52,7 +52,7 @@
             android:padding="10dp">
 
             <EditText
-                android:id="@+id/editTextTextMultiLine"
+                android:id="@+id/cuerpo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -81,16 +81,18 @@
                 android:layout_width="215dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="guardar"
                 android:text="guardar"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/atras"
+                android:id="@+id/cancelar"
                 android:layout_width="215dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="atras"
+                android:onClick="cancelar"
+                android:text="cancelar"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

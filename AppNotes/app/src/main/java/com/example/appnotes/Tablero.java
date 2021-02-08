@@ -36,6 +36,7 @@ public class Tablero extends View implements View.OnTouchListener{
         alto = canvas.getHeight(); //1050
         unidad = ancho/numColumnas;
 
+        /*
         for(int i = 0; i < numColumnas; i++){ //verticales
             canvas.drawLine(unidad*i, 0, unidad*i, alto, pincel); //linea
         }
@@ -43,6 +44,7 @@ public class Tablero extends View implements View.OnTouchListener{
         for(int i = 0; i < numFilas; i++){ //horizontales
             canvas.drawLine(0, unidad*i, ancho, unidad*i, pincel); //linea
         }
+         */
     }
 
     @Override
