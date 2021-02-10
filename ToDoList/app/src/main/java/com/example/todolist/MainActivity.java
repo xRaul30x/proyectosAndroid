@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -52,16 +53,20 @@ public class MainActivity extends AppCompatActivity {
          */
 
         //cogemos las notas que tenemos en la variable lista de la bd
-        listaToString = preferences.getString("listaToString"," ");
+        listaToString = preferences.getString("listaToString",null);
 
         //debemos sacar el contenido de cada nota para hacer varios addNota
-        String listaSplit[] = listaToString.split(",");
+        if(listaToString != null){
+            String listaSplit[] = listaToString.split(",");
 
-        //una vez tenemos el arraylist local sincronizado con el arraylist de la bd, podemos utilzarlo para hacer los controles en tiempo real
-        for(int i=0;i<listaSplit.length;i++){
+            //una vez tenemos el arraylist local sincronizado con el arraylist de la bd, podemos utilzarlo para hacer los controles en tiempo real
+            for(int i=0;i<listaSplit.length;i++){
 
-            sincronizarNota(listaSplit[i]); //añadir al arraylist y a la bd
-            addNota(listaSplit[i]); //añadir al layout
+                sincronizarNota(listaSplit[i]); //añadir al arraylist y a la bd
+                addNota(listaSplit[i]); //añadir al layout
+            }
+        }else{
+            Toast.makeText(this, "Base de datos vacía", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -103,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void rellenarNota(View view){ //desde aqui rellenamos solo la base de datos
 
-        Intent intent = new Intent(this, AgregarEditar.class);
+        Intent intent = new Intent(this, Agregar.class);
         startActivity(intent);
     }
 
@@ -114,7 +119,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void borrar(View view){
+        //borramos de la base de datos y actualizamos to
+        editor = preferences.edit().remove("listaToString"); //editor de preferencias
+        editor.commit();
 
+        layout.removeAllViewsInLayout();
     }
 
     //Borrar todas: layout.removeAllViewsInLayout();
