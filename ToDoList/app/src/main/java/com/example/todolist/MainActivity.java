@@ -1,6 +1,7 @@
 package com.example.todolist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -8,7 +9,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,20 +36,19 @@ public class MainActivity extends AppCompatActivity {
         preferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         lista =  new ArrayList<>();
 
-        //actualizarLayout(); //crea checks y mensajes a raíz de la info que haya en el arrayList/bd
-        sincronizarNota("Bienvenido a la app!");
-        sincronizarNota("Segunda nota en la base de datos!"); //metodo que añade una nueva nota al arraylist y a la bd
-        actualizarLayout();
+        sincronizarYactualizar(); //cogemos la bd, añadimos al arraylist y aplastamos la bd y actualizamos el layout
     }
 
-    public void actualizarLayout(){ //
+    public void sincronizarYactualizar(){ //
 
         /*
         Miramos cuantas notas hay en la bd
         Por cada registro:
+            Añadimos al arraylist
+            Aplastamos la bd con el nuevo registro
             Creamos un layout con id "numero de registros-1"
-            Creamos una checkbox por cada nota
-            Rellenamos el mensaje que haya en la posición de cada nota en el array de la bd
+                Creamos una checkbox por cada nota
+                Rellenamos el mensaje que haya en la posición de cada nota en el array de la bd
          */
 
         //cogemos las notas que tenemos en la variable lista de la bd
@@ -61,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
         //una vez tenemos el arraylist local sincronizado con el arraylist de la bd, podemos utilzarlo para hacer los controles en tiempo real
         for(int i=0;i<listaSplit.length;i++){
 
-            addNota(listaSplit[i]);
+            sincronizarNota(listaSplit[i]); //añadir al arraylist y a la bd
+            addNota(listaSplit[i]); //añadir al layout
         }
 
 
@@ -101,15 +101,16 @@ public class MainActivity extends AppCompatActivity {
         nuevoLayout.addView(tx);
     }
 
-    public void rellenarNota(View view){
+    public void rellenarNota(View view){ //desde aqui rellenamos solo la base de datos
 
-        //Intent intent = new Intent(this, AgregarEditar.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, AgregarEditar.class);
+        startActivity(intent);
     }
 
-    public void actualizarView(View view){ //actualizar desde el botón
+    public void actualizar(View view){
 
-        actualizarLayout();
+        //llamamos a todos los metodos
+        sincronizarYactualizar(); //recordatorio: este metodo coge los datos de la bd, rellena el arraylist y crea los controles
     }
 
     public void borrar(View view){
@@ -121,6 +122,8 @@ public class MainActivity extends AppCompatActivity {
     public void salir(View view){
         //Toast.makeText(this, preferences.getString("listaToString"," ")+"", Toast.LENGTH_SHORT).show();
     }
+
+
 }
 
 /*

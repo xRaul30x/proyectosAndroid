@@ -39,6 +39,16 @@
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/actualizar"
+                android:layout_width="6dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="actualizar"
+                android:text="F5"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
                 android:id="@+id/add"
                 android:layout_width="6dp"
                 android:layout_height="match_parent"
