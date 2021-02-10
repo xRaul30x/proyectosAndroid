@@ -1,4 +1,4 @@
-package com.example.appnotes;
+package com.example.appnotes2;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,7 +16,6 @@ public class AgregarEditar extends AppCompatActivity {
 
     EditText titulo, cuerpo;
     Set<String> listaNotas;
-    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,23 +28,18 @@ public class AgregarEditar extends AppCompatActivity {
     }
 
     public void guardar(View view){
-        SharedPreferences preferences = getSharedPreferences("settings", Context.MODE_PRIVATE); //cogemos la configuracion
-        SharedPreferences.Editor editor = preferences.edit(); //editor de preferencias
 
         String tit = titulo.getText().toString();
         String cue = cuerpo.getText().toString();
 
-            id = preferences.getInt("id",0); //identificador autoincrement de la nota
+        SharedPreferences preferences = getSharedPreferences("settings", Context.MODE_PRIVATE); //cogemos la configuracion
 
         listaNotas = preferences.getStringSet("lista",new HashSet<String>()); //guardamos lo que haya en nuestro array
-
         Set<String> aux = new HashSet<String>(listaNotas);
 
-        aux.add(id+":"+tit+":"+cue); //añadimos la nueva nota a nuestro array
+        aux.add(tit+":"+cue); //añadimos la nueva nota a nuestro array
 
-            id++;//tras añadirlo aumentamos el contador
-            editor.putInt("id",id);
-
+        SharedPreferences.Editor editor = preferences.edit(); //editor de preferencias
         editor.putStringSet("lista",aux); //aplastamos la lista que había en configuración
         editor.commit();
 

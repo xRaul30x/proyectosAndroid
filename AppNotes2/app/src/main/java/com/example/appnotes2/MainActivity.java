@@ -1,4 +1,4 @@
-package com.example.appnotes;
+package com.example.appnotes2;
 
 import android.content.Context;
 import android.content.Intent;
@@ -77,9 +77,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pintarSiguiente(){ //boolean hePintado, while(!hePintado)
-        SharedPreferences preferences = getSharedPreferences("settings", Context.MODE_PRIVATE); //cogemos la configuracion
-        int id = preferences.getInt("id", 0);
-
         for (int f = 0; f < 6; f++) { //filas
             for (int c = 0; c < 4; c++) { //columnas
 
@@ -87,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
                     tieneNota[f][c] = true; //cuando la encontramos, colocamos una nota
 
-                    dibujarNota drawNota = new dibujarNota(this,f,c,id+"");
+                    dibujarNota drawNota = new dibujarNota(this,f,c);
                     layout.addView(drawNota);
 
                     return;

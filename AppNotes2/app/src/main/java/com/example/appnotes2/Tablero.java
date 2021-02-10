@@ -1,13 +1,11 @@
-package com.example.appnotes;
+package com.example.appnotes2;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 public class Tablero extends View implements View.OnTouchListener{
 
@@ -39,6 +37,15 @@ public class Tablero extends View implements View.OnTouchListener{
 
         canvas.drawARGB(255,255,255,255);
 
+        /*
+        for(int i = 0; i < numColumnas; i++){ //verticales
+            canvas.drawLine(unidad*i, 0, unidad*i, alto, pincel); //linea
+        }
+
+        for(int i = 0; i < numFilas; i++){ //horizontales
+            canvas.drawLine(0, unidad*i, ancho, unidad*i, pincel); //linea
+        }
+         */
     }
 
     @Override
@@ -50,8 +57,7 @@ public class Tablero extends View implements View.OnTouchListener{
         fila = (cordY/(alto/numFilas));
         columna = (cordX/(ancho/numColumnas));
 
-        Toast.makeText(getContext(), fila+","+columna, Toast.LENGTH_SHORT).show();
-
+        //Toast.makeText(getContext(), fila+","+columna, Toast.LENGTH_SHORT).show();
 
         invalidate();
         return true;

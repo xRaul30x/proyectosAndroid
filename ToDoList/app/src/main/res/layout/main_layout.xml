@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -23,83 +24,77 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#D3D1D1"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/titulo_text"
-                android:layout_width="102dp"
-                android:layout_height="59dp"
+                android:id="@+id/titulo"
+                android:layout_width="143dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:paddingLeft="25dp"
                 android:paddingTop="15dp"
-                android:text="Titulo"
+                android:text="ToDoList!"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/titulo"
-                android:layout_width="match_parent"
-                android:layout_height="62dp"
+            <Button
+                android:id="@+id/add"
+                android:layout_width="6dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:onClick="rellenarNota"
+                android:text="+"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/layout"
-            android:layout_width="match_parent"
-            android:layout_height="525dp"
-            android:layout_weight="3"
-            android:padding="10dp">
-
-            <EditText
-                android:id="@+id/cuerpo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine" />
-        </RelativeLayout>
+            android:layout_width="408dp"
+            android:layout_height="569dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="3"></LinearLayout>
 
         <LinearLayout
             android:id="@+id/pie"
             android:layout_width="match_parent"
-            android:layout_height="63dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#D3D1D1"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/borrar"
+                android:layout_width="264dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="borrar"
+                android:text="borrar"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <RelativeLayout
                 android:id="@+id/espacio"
-                android:layout_width="157dp"
+                android:layout_width="247dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
             </RelativeLayout>
 
             <Button
-                android:id="@+id/guardar"
-                android:layout_width="215dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="guardar"
-                android:text="guardar"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <Button
                 android:id="@+id/cancelar"
                 android:layout_width="215dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:onClick="cancelar"
-                android:text="cancelar"
+                android:onClick="salir"
+                android:text="salir"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

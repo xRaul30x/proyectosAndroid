@@ -1,17 +1,17 @@
-package com.example.appnotes;
+package com.example.appnotes2;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
 
-public class dibujoNota extends View{
+public class dibujarNota extends View{
     int ancho,alto;
     int unidad;
     int x,y;
     int f,c;
 
-    public dibujoNota(Context context, int fila, int columna) {
+    public dibujarNota(Context context, int fila, int columna) {
 
         super(context);
 

@@ -28,22 +28,14 @@
 
             <TextView
                 android:id="@+id/titulo_text"
-                android:layout_width="102dp"
+                android:layout_width="298dp"
                 android:layout_height="59dp"
                 android:layout_weight="1"
                 android:paddingLeft="25dp"
                 android:paddingTop="15dp"
-                android:text="Titulo"
+                android:text="¿Qué tienes que hacer?"
                 android:textSize="24sp"
                 android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/titulo"
-                android:layout_width="match_parent"
-                android:layout_height="62dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
 
         </LinearLayout>
 
