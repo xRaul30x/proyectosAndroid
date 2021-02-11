@@ -1,4 +1,4 @@
-package com.example.todolist;
+package com.example.todolistv2;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         preferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
+        lista =  new ArrayList<>();
+
         actualizarPantalla(); //actualiza nuestro array a través de la bd y tambien los layouts
     }
 
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public void actualizarArray(){ //actualiza el array a través de la bd
 
         //al entrar vaciamos el array
-        lista = new ArrayList<>();
+        lista.clear();
 
         //cogemos las notas que tenemos en la bd
         listaToString = preferences.getString("listaToString",null);

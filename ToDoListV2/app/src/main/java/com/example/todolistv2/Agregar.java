@@ -1,4 +1,4 @@
-package com.example.todolist;
+package com.example.todolistv2;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -27,15 +27,12 @@ public class Agregar extends AppCompatActivity {
         editor = preferences.edit();
         cuerpo = (EditText)findViewById(R.id.cuerpo);
 
-        cuerpoToString = null;
         listaToString = preferences.getString("listaToString","");
     }
 
     public void guardar(View view){
-
-        cuerpoToString = cuerpo.getText().toString();
-
-        if(cuerpoToString.length() != 0){
+        if(cuerpoToString != null){
+            cuerpoToString = cuerpo.getText().toString();
 
             listaToString = listaToString + cuerpoToString + ","; //añadimos lo que haya puesto el usuario y una coma
 
@@ -43,7 +40,6 @@ public class Agregar extends AppCompatActivity {
             editor.commit();
 
             cuerpo.setText("");
-            Toast.makeText(this, "Añadido correctamente", Toast.LENGTH_SHORT).show();
         }else{
 
             Toast.makeText(this, "Debes escribir una nota antes!", Toast.LENGTH_SHORT).show();
