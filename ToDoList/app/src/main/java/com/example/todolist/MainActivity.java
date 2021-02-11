@@ -1,9 +1,12 @@
 package com.example.todolist;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
@@ -28,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout layout;
     LinearLayout nuevoLayout;
 
-    //CheckBox[] ch;
     ArrayList<CheckBox> listaChbx;
 
 
@@ -97,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
         int id = lista.size()-1;
         nuevoLayout.setId(id); //su id es su posicion en la lista
 
+        nuevoLayout.setBackgroundResource(R.color.noteBackBlue);
+
         CheckBox ch = new CheckBox(this);
         TextView tx = new TextView(this);
 
@@ -105,13 +109,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //borrar pero por la pos de listaChbx
-                for(int i = 0; i < listaChbx.size(); i++){
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
 
-                    if(listaChbx.get(i).isChecked()){
-                        borrarPorPos(i);
+                        for(int i = 0; i < listaChbx.size(); i++){
+
+                            if(listaChbx.get(i).isChecked()){
+                                borrarPorPos(i);
+                            }
+                        }
                     }
-                }
+                }, 1000);
+
             }
         });
 
@@ -119,6 +129,23 @@ public class MainActivity extends AppCompatActivity {
 
         nuevoLayout.addView(ch);
         nuevoLayout.addView(tx);
+    }
+
+    public void borrarPorPos(int pos){
+
+        if(lista.size()==1){
+
+            editor = preferences.edit().remove("listaToString");
+            editor.commit();
+
+        }else{
+
+            lista.remove(pos);
+            actualizarBD();
+        }
+
+        actualizarPantalla();
+
     }
 
     public void actualizarBD(){ //actualiza la bd a través del array
@@ -162,58 +189,27 @@ public class MainActivity extends AppCompatActivity {
         actualizarPantalla();
     }
 
-    public void borrarPorPos(int pos){
-
-        //a raiz del array, sincronizamos la base de datos
-        lista.remove(pos);
-        actualizarBD();
-        actualizarPantalla();
-
-    }
-
     public void salir(View view){
 
-        //if(lista != null) Toast.makeText(this, lista.toString(), Toast.LENGTH_SHORT).show();
-        //else Toast.makeText(this, "Vacía", Toast.LENGTH_SHORT).show();
-        finish();
+        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+
+        alert.setTitle("Saliendo de ToDoList!");
+
+        alert.setMessage("Estás seguro que quieres salir?");
+
+        alert.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                finish();
+            }
+        });
+
+        alert.setNeutralButton("Cancelar", null);
+
+        alert.show();
+
     }
 
 
 }
-
-/*
-    Contar hijos del layout: layout.getChildCount()
- */
-
-/*
-
-        Toast.makeText(this, "intentamos", Toast.LENGTH_SHORT).show();
-
-        LinearLayout nuevoLayout = new LinearLayout(this);
-        layout.addView(nuevoLayout);
-
-        nuevoLayout.setGravity(Gravity.LEFT);
-        nuevoLayout.setOrientation(LinearLayout.HORIZONTAL);
-
-        CheckBox ch = new CheckBox(this);
-        TextView tx = new TextView(this);
-
-        tx.setText("Esto es un mensaje generado");
-
-        nuevoLayout.addView(ch);
-        nuevoLayout.addView(tx);
-
-
- */
-
-
-/*
-
-        SharedPreferences preferences = getSharedPreferences("settings", Context.MODE_PRIVATE); //cogemos la configuracion
-        listaNotas = preferences.getStringSet("lista",new HashSet<String>()); //guardamos lo que haya en nuestro array
-
-        SharedPreferences.Editor editor = preferences.edit(); //editor de preferencias
-        editor.putStringSet("lista",aux); //aplastamos la lista que había en configuración
-        editor.commit();
-
- */
