@@ -9,9 +9,11 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.nio.channels.AsynchronousServerSocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     LinearLayout layout;
     LinearLayout nuevoLayout;
+
+    //CheckBox[] ch;
+    ArrayList<CheckBox> listaChbx;
 
 
     @Override
@@ -46,8 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void actualizarArray(){ //actualiza el array a través de la bd
 
-        //al entrar vaciamos el array
+        //al entrar o actualizar vaciamos los arrays
         lista = new ArrayList<>();
+        listaChbx = new ArrayList<>();
 
         //cogemos las notas que tenemos en la bd
         listaToString = preferences.getString("listaToString",null);
@@ -88,10 +94,28 @@ public class MainActivity extends AppCompatActivity {
         nuevoLayout.setGravity(Gravity.LEFT);
         nuevoLayout.setOrientation(LinearLayout.HORIZONTAL);
 
+        int id = lista.size()-1;
+        nuevoLayout.setId(id); //su id es su posicion en la lista
+
         CheckBox ch = new CheckBox(this);
         TextView tx = new TextView(this);
 
         tx.setText(contenido);
+        ch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //borrar pero por la pos de listaChbx
+                for(int i = 0; i < listaChbx.size(); i++){
+
+                    if(listaChbx.get(i).isChecked()){
+                        borrarPorPos(i);
+                    }
+                }
+            }
+        });
+
+        listaChbx.add(ch);
 
         nuevoLayout.addView(ch);
         nuevoLayout.addView(tx);
@@ -138,15 +162,13 @@ public class MainActivity extends AppCompatActivity {
         actualizarPantalla();
     }
 
-    public void borrarPorPosArray(){
+    public void borrarPorPos(int pos){
 
         //a raiz del array, sincronizamos la base de datos
-        /*
-        borramos la nota del array através del id de la checkbox (aun no existe)
-        aplastanmos la bd con el nuevo arraylist
-        (mirar si antes deberias borrar los elementos del layout)
-        sincronizarYactualizar
-         */
+        lista.remove(pos);
+        actualizarBD();
+        actualizarPantalla();
+
     }
 
     public void salir(View view){
