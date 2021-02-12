@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#D3D1D1"
+            android:background="#287DC3"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -34,6 +34,7 @@
                 android:paddingLeft="25dp"
                 android:paddingTop="15dp"
                 android:text="¿Qué tienes que hacer?"
+                android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -44,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="525dp"
             android:layout_weight="3"
+            android:background="#D2D2D2"
             android:padding="10dp">
 
             <EditText
@@ -60,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="63dp"
             android:layout_weight="1"
-            android:background="#D3D1D1"
+            android:background="#287DC3"
             android:orientation="horizontal"
             android:weightSum="3">
 

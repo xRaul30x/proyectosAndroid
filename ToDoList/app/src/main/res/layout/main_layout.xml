@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#D3D1D1"
+            android:background="#287DC3"
             android:orientation="horizontal"
             android:padding="10dp">
 
@@ -35,6 +35,7 @@
                 android:paddingLeft="25dp"
                 android:paddingTop="15dp"
                 android:text="ToDoList!"
+                android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -62,21 +63,24 @@
 
         <LinearLayout
             android:id="@+id/layout"
-            android:layout_width="408dp"
+            android:layout_width="match_parent"
             android:layout_height="569dp"
             android:layout_weight="3"
-            android:orientation="vertical"></LinearLayout>
+            android:background="#D2D2D2"
+            android:orientation="vertical"
+            android:padding="15dp"></LinearLayout>
 
         <LinearLayout
             android:id="@+id/pie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#D3D1D1"
+            android:background="#287DC3"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/borrar"
+                style="@style/Widget.AppCompat.Button"
                 android:layout_width="264dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

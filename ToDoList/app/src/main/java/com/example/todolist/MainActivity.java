@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     LinearLayout layout;
     LinearLayout nuevoLayout;
+    LinearLayout.LayoutParams params;
 
     ArrayList<CheckBox> listaChbx;
 
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_layout);
 
         layout = findViewById(R.id.layout);
+        //layout.setPadding(5,5,5,5);
+
         preferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
@@ -91,20 +94,20 @@ public class MainActivity extends AppCompatActivity {
     public void addNota(String contenido){
 
         nuevoLayout = new LinearLayout(this);
-        layout.addView(nuevoLayout);
+        params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout.addView(nuevoLayout, params);
 
-        nuevoLayout.setGravity(Gravity.LEFT);
         nuevoLayout.setOrientation(LinearLayout.HORIZONTAL);
+        nuevoLayout.setBackgroundResource(R.color.white);
 
-        int id = lista.size()-1;
-        nuevoLayout.setId(id); //su id es su posicion en la lista
-
-        nuevoLayout.setBackgroundResource(R.color.noteBackBlue);
+        params.setMargins(0, 0, 0, 10); //distancia entre nota y nota
 
         CheckBox ch = new CheckBox(this);
         TextView tx = new TextView(this);
 
-        tx.setText(contenido);
+        tx.setText(contenido); //texto de la nota
+        tx.setPadding(0,0,0,25); //el texto no se cortará por abajo
+
         ch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
