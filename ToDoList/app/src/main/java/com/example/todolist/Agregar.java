@@ -33,7 +33,7 @@ public class Agregar extends AppCompatActivity {
 
     public void guardar(View view){
 
-        cuerpoToString = cuerpo.getText().toString();
+        cuerpoToString = cuerpo.getText().toString().trim();
 
         if(cuerpoToString.length() != 0){
 
@@ -46,6 +46,7 @@ public class Agregar extends AppCompatActivity {
             Toast.makeText(this, "Añadido correctamente", Toast.LENGTH_SHORT).show();
         }else{
 
+            cuerpo.setText(""); //si el usuario sólo ha puesto espacios en blanco, se los quitamos
             Toast.makeText(this, "Debes escribir una nota antes!", Toast.LENGTH_SHORT).show();
         }
 
