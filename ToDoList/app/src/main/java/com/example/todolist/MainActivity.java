@@ -27,13 +27,11 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences preferences; SharedPreferences.Editor editor;
     List<String> lista;
     String listaToString;
+    ArrayList<CheckBox> listaChbx;
 
     LinearLayout layout;
     LinearLayout nuevoLayout;
     LinearLayout.LayoutParams params;
-
-    ArrayList<CheckBox> listaChbx;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +39,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_layout);
 
         layout = findViewById(R.id.layout);
-        //layout.setPadding(5,5,5,5);
 
         preferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
         actualizarPantalla(); //actualiza nuestro array a través de la bd y tambien los layouts
+    }
+
+    @Override
+    protected void onResume() { //método que se llama cuando cambia el flujo de las actividades
+        super.onResume();
+
+        actualizarPantalla();
+        if(lista == null) Toast.makeText(this, "Vaya, no tienes tareas!", Toast.LENGTH_SHORT).show();
     }
 
     public void actualizarPantalla(){

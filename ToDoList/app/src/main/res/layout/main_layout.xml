@@ -21,7 +21,7 @@
         <LinearLayout
             android:id="@+id/cabecera"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:background="#287DC3"
             android:orientation="horizontal"
@@ -39,24 +39,31 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/actualizar"
-                android:layout_width="6dp"
+
+            <RelativeLayout
+                android:id="@+id/botonConfig_layout"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="btnActualizar"
-                android:text="F5"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/btnConfig"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/config" />
+
+            </RelativeLayout>
 
             <Button
                 android:id="@+id/add"
-                android:layout_width="6dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="rellenarNuevaNota"
                 android:text="+"
-                android:textSize="30sp"
+                android:textSize="36sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
