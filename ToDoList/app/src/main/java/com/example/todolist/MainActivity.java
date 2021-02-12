@@ -141,24 +141,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void borrarPorPos(int pos){
 
-        if(lista.size()==1){
-
-            editor = preferences.edit().remove("listaToString");
-            editor.commit();
-
-        }else{
-
-            lista.remove(pos);
-            actualizarBD();
-        }
-
-        actualizarPantalla();
+        lista.remove(pos); //borramos en el array
+        actualizarBD(); //actualizamos la bd a tarvés del array
+        actualizarPantalla(); // actualizamos la pantalla
 
     }
 
     public void actualizarBD(){ //actualiza la bd a través del array
 
-        if(lista != null){
+        if(lista.size() != 0){
 
             StringBuilder stbuilder = new StringBuilder(); //objeto para convertir el array en un string
             for(String nt: lista){
@@ -169,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
             editor = preferences.edit(); //editor de preferencias
             editor.putString("listaToString", stbuilder.toString());
 
-        }else{
+        }else{ //si la lista está vacía, vaciamos tambien la bd
 
             editor = preferences.edit().remove("listaToString");
         }
