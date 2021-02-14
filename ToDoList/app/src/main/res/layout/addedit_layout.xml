@@ -20,16 +20,16 @@
         <LinearLayout
             android:id="@+id/cabecera"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:background="#287DC3"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:weightSum="2">
 
             <TextView
                 android:id="@+id/titulo_text"
-                android:layout_width="298dp"
-                android:layout_height="59dp"
+                android:layout_width="238dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:paddingLeft="25dp"
                 android:paddingTop="15dp"
@@ -37,6 +37,25 @@
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/botonConfig_layout"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="10dp">
+
+                <ImageButton
+                    android:id="@+id/btnDone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="guardar"
+                    android:padding="20dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/done" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -63,32 +82,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#287DC3"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <RelativeLayout
-                android:id="@+id/espacio"
-                android:layout_width="157dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-            </RelativeLayout>
-
-            <Button
-                android:id="@+id/guardar"
-                android:layout_width="215dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="guardar"
-                android:text="guardar"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+            android:gravity="right"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/atras"
-                android:layout_width="215dp"
+                android:layout_width="138dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:onClick="atras"
                 android:text="atras"
                 android:textSize="18sp"
