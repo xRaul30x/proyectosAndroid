@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcherOwner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.nio.channels.AsynchronousServerSocketChannel;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         editor = preferences.edit();
 
         actualizarPantalla(); //actualiza nuestro array a través de la bd y tambien los layouts
+
     }
 
     @Override
@@ -96,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void addNota(String contenido){
+    public void addNota(final String contenido){
 
         nuevoLayout = new LinearLayout(this);
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -104,6 +107,13 @@ public class MainActivity extends AppCompatActivity {
 
         nuevoLayout.setOrientation(LinearLayout.HORIZONTAL);
         nuevoLayout.setBackgroundResource(R.color.white);
+
+        nuevoLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editarNota(contenido);
+            }
+        });
 
         params.setMargins(0, 0, 0, 10); //distancia entre nota y nota
 
@@ -179,6 +189,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Agregar.class);
         startActivity(intent);
     }
+
+    public void editarNota(String contenidoEdit){ //desde aqui rellenamos solo la base de datos
+
+        Intent intent = new Intent(this, Agregar.class);
+        intent.putExtra("contenidoEdit", contenidoEdit);
+        startActivity(intent);
+    }
+
 
     public void borrarBD(View view){
         //borramos de la base de datos y actualizamos
