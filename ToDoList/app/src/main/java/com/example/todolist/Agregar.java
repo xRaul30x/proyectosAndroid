@@ -57,14 +57,21 @@ public class Agregar extends AppCompatActivity {
 
                 listaToString = preferences.getString("listaToString",null); //nunca va  ser null
 
+                //añadimos # para hacer cada nota única y así no alterar las coincidencias en otras notas
+                contenidoEdit += "#"; //target
+                cuerpoToString +="#"; //lo que ha puesto el usuario
                 String replaceInLista = listaToString.replace(contenidoEdit,cuerpoToString); //reemplazamos el target por lo que ha puesto el usuario
 
                 editor.putString("listaToString",replaceInLista); //aplastamos la lista que había en configuración
                 editor.commit();
                 
                 Toast.makeText(this, "Editado correctamente", Toast.LENGTH_SHORT).show();
+                finish();
 
             }else{ //si no estamos en modo edición, añadimos
+
+                //añadimos # para hacer cada nota única y así no alterar las coincidencias en otras notas
+                cuerpoToString += "#";
 
                 listaToString = listaToString + cuerpoToString + ","; //añadimos lo que haya puesto el usuario y una coma
 

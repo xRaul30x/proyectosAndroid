@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         nuevoLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editarNota(contenido);
+                editarNota(contenido.substring(0,contenido.length()-1)); //en la base de datos cada nota se almacena con un # al final, pero estel usuario no lo ve
             }
         });
 
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         CheckBox ch = new CheckBox(this);
         TextView tx = new TextView(this);
 
-        tx.setText(contenido); //texto de la nota
+        tx.setText(contenido.substring(0,contenido.length()-1)); //texto de la nota
         tx.setPadding(0,0,0,25); //el texto no se cortará por abajo
 
         ch.setOnClickListener(new View.OnClickListener() {
