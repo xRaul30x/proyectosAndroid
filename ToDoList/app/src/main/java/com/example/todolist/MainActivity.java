@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -46,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
         editor = preferences.edit();
 
         actualizarPantalla(); //actualiza nuestro array a través de la bd y tambien los layouts
+
+        //Toast toast = Toast.makeText(this.getApplicationContext(), "BIENVENIDO", Toast.LENGTH_SHORT);
+        //toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL,0,0);
+        //toast.show();
 
     }
 
@@ -111,7 +116,8 @@ public class MainActivity extends AppCompatActivity {
         nuevoLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editarNota(contenido.substring(0,contenido.length()-1)); //en la base de datos cada nota se almacena con un # al final, pero estel usuario no lo ve
+                //editarNota(contenido.substring(0,contenido.indexOf('#'))); //en la base de datos cada nota se almacena con un # al final, pero estel usuario no lo ve
+                editarNota(contenido);
             }
         });
 
@@ -120,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         CheckBox ch = new CheckBox(this);
         TextView tx = new TextView(this);
 
-        tx.setText(contenido.substring(0,contenido.length()-1)); //texto de la nota
+        tx.setText(contenido.substring(0,contenido.indexOf('#'))); //texto de la nota
         tx.setPadding(0,0,0,25); //el texto no se cortará por abajo
 
         ch.setOnClickListener(new View.OnClickListener() {
@@ -179,8 +185,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void btnActualizar(View view){
-        actualizarPantalla();
+    public void btnConfig(View view){
+        Intent intent = new Intent(this, Configuracion.class);
+        startActivity(intent);
     }
 
 
@@ -199,14 +206,48 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void borrarBD(View view){
-        //borramos de la base de datos y actualizamos
-        editor = preferences.edit().remove("listaToString");
-        editor.commit();
+        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
 
-        actualizarPantalla();
+        //alert.setTitle("Borrando!");
+
+        alert.setMessage("Seguro que quieres borrar todas las notas?");
+
+        alert.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                //borramos de la base de datos y actualizamos
+                editor = preferences.edit().remove("listaToString");
+                editor.commit();
+
+                actualizarPantalla();
+            }
+        });
+
+        alert.setNeutralButton("Cancelar", null);
+
+        alert.show();
+
     }
 
-    public void salir(View view){
+    public void salir(View view){ //botón SALIR de la pantalla
+        salir();
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) { //botón atrás del menu de navegación del movil
+
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+
+            salir();
+
+            return true;
+        }else{
+            return super.onKeyUp(keyCode, event);
+        }
+    }
+
+    public void salir(){
 
         AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
 
@@ -227,6 +268,8 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
 
     }
+
+
 
 
 }

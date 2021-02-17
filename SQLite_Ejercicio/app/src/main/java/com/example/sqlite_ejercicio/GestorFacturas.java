@@ -6,11 +6,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class CrearFacturas extends SQLiteOpenHelper {
+public class GestorFacturas extends SQLiteOpenHelper {
 
     String sqlTablaFacturas = "CREATE TABLE Facturas (num INTEGER PRIMARY KEY,dni INTEGER,concepto TEXT,valor DOUBLE)";
+    String sqlMostrarFacturas = "SELECT * FROM Facturas";
 
-    public CrearFacturas(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public GestorFacturas(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
 
 
@@ -26,5 +27,10 @@ public class CrearFacturas extends SQLiteOpenHelper {
 
         db.execSQL("DROP TABLE IF EXISTS Facturas");
         db.execSQL(sqlTablaFacturas);
+    }
+
+    public void visualizarFacturas(SQLiteDatabase db){
+
+        db.execSQL(sqlMostrarFacturas);
     }
 }

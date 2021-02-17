@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.inputmethodservice.ExtractEditText;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
     EditText nombre, dni, direccion, telefono;
     EditText num, dni2, concepto, valor;
 
-    CrearClientes creaClientes;
-    CrearFacturas creaFacturas;
+    GestorClientes clientes;
+    GestorFacturas facturas;
 
     SQLiteDatabase db;
     SQLiteDatabase db2;
@@ -27,13 +26,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        creaClientes = new CrearClientes(this, "CrearClientes", null, 1);
-        creaFacturas = new CrearFacturas(this, "CrearFacturas", null, 1);
+        //clientes = new GestorClientes(this, "clientes", null, 1);
+        //facturas = new GestorFacturas(this, "facturas", null, 1);
         //ConsultarFacturas consultarFacturas = new ConsultarFacturas(this, "ConsultarFacturas", null, 1);
 
-
-        db = creaClientes.getWritableDatabase();
-        db2 = creaFacturas.getWritableDatabase();
+        //db = clientes.getWritableDatabase();
+        //db2 = facturas.getWritableDatabase();
         //SQLiteDatabase db3 = consultarFacturas.getReadableDatabase();
 
         nombre = (EditText)findViewById(R.id.nombre);
@@ -46,11 +44,16 @@ public class MainActivity extends AppCompatActivity {
         concepto = (EditText)findViewById(R.id.concepto);
         valor = (EditText)findViewById(R.id.valor);
 
-
-
     }
 
     public void guardarCliente(View view) {
+        clientes = new GestorClientes(this, "clientes", null, 1);
+        //facturas = new GestorFacturas(this, "facturas", null, 1);
+        //ConsultarFacturas consultarFacturas = new ConsultarFacturas(this, "ConsultarFacturas", null, 1);
+
+        db = clientes.getWritableDatabase();
+        //db2 = facturas.getWritableDatabase();
+
         if (db != null) {
 
             try {
@@ -61,12 +64,20 @@ public class MainActivity extends AppCompatActivity {
                 String telefonoSt = telefono.getText().toString();
 
                 db.execSQL("INSERT INTO Clientes (dni, nombre, direccion, tfno) " + "VALUES(" + dniInt + ", '" + nombreSt + "', '" + direccionSt + "', '" + telefonoSt + "')");
-                //db.execSQL("INSERT INTO Clientes (dni, nombre, direccion, tfno) VALUES(5, 'raul', 'calle', '555')");
                 db.close();
 
                 Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show();
+
+                //reinciamos las textbox
+                dni.setText("");
+                nombre.setText("");
+                direccion.setText("");
+                telefono.setText("");
+
             }catch(Exception e){
 
+                e.printStackTrace();
+                Log.e("error","error");
                 Toast.makeText(this, "Faltan datos por rellenar...", Toast.LENGTH_SHORT).show();
             }
         }
@@ -81,18 +92,29 @@ public class MainActivity extends AppCompatActivity {
                 double valorDbl = Double.parseDouble(valor.getText().toString());
 
                 db.execSQL("INSERT INTO Facturas (dni, nombre, direccion, tfno) " + "VALUES("+numInt+", "+dni2Int+", '"+conceptoString+"', "+valorDbl+")");
-                //db.execSQL("INSERT INTO Facturas (dni, nombre, direccion, tfno) VALUES(5, 'raul', 'calle', '555')");
                 db.close();
 
                 Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show();
+
+                num.setText("");
+                dni2.setText("");
+                concepto.setText("");
+                valor.setText("");
             }catch(Exception e){
 
-                Toast.makeText(this, "Faltan datos por rellenar...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Faltan datos por rellenar o el dni estaba duplicado", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     public void visualizar(View view) {
-        Intent intent;
+
+        Intent intent = new Intent(this, Visualizar.class);
+        startActivity(intent);
+    }
+
+    public void salir(View view) {
+
+        finish();
     }
 }

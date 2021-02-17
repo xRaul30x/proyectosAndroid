@@ -33,9 +33,9 @@
                 android:layout_weight="1"
                 android:paddingLeft="25dp"
                 android:paddingTop="15dp"
-                android:text="¿Qué tienes que hacer?"
+                android:text="Configuración"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <RelativeLayout
@@ -57,76 +57,87 @@
 
             </RelativeLayout>
 
-        </LinearLayout> <!-- FIN CABECERA -->
+        </LinearLayout>
 
-        <ScrollView
-            android:id="@+id/layoutScroll"
+        <RelativeLayout
+            android:id="@+id/layout"
             android:layout_width="match_parent"
-            android:layout_height="600dp"
-            android:layout_weight="1"
-            android:background="#D2D2D2">
+            android:layout_height="565dp"
+            android:layout_weight="3"
+            android:background="#D2D2D2"
+            android:padding="25dp" >
 
             <LinearLayout
-                android:id="@+id/layout"
+                android:id="@+id/orden_layout"
                 android:layout_width="match_parent"
-                android:layout_height="565dp"
-                android:background="#D2D2D2"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/orden_layout"
+                <TextView
+                    android:id="@+id/estilo_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="10dp"
+                    android:text="Estilo"
+                    android:textColor="#000000"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/orden_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Color"
-                        android:textColor="#000000"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                    <RelativeLayout
-                        android:id="@+id/paleta_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="75dp">
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/cuerpo_layout"
+                <RadioGroup
+                    android:id="@+id/estilo_radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="25dp">
 
-                    <TextView
-                        android:id="@+id/cuerpo_text"
+                    <RadioButton
+                        android:id="@+id/estiloPastel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Nota"
-                        android:textColor="#000000"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:text="Colores pastel" />
 
-                    <EditText
-                        android:id="@+id/cuerpo"
+                    <RadioButton
+                        android:id="@+id/estiloCalido"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:gravity="start|top"
-                        android:inputType="textMultiLine" />
-                </LinearLayout>
+                        android:text="Colores cálidos" />
 
-            </LinearLayout> <!-- FIN LAYOUT-->
-        </ScrollView>
+                    <RadioButton
+                        android:id="@+id/estiloFrio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Colores fríos" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/orden_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Ordenar"
+                    android:textColor="#000000"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/orden_radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/modoAlfab"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Alfabéticamente" />
+
+                    <RadioButton
+                        android:id="@+id/modoColores"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Por colores" />
+                </RadioGroup>
+
+            </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/pie"

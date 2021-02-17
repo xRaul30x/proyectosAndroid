@@ -5,94 +5,122 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#7FD5B2"
-    tools:context=".MainActivity">
+    tools:context=".Visualizar">
 
     <LinearLayout
-        android:id="@+id/titulo_ver"
-        android:layout_width="408dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:layout_marginBottom="630dp"
-        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#5779A3"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/titulo"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            android:text="Todos los datos"
-            android:textSize="36sp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/titulo_ver"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-        <Button
-            android:id="@+id/ver"
-            android:layout_width="126dp"
+            <TextView
+                android:id="@+id/titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                android:text="Todos los datos"
+                android:textSize="33sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/ver"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:onClick="volver"
+                android:padding="15dp"
+                android:text="volver"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/titulo_cliente"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="visualizar"
-            android:text="volver"
-            android:textSize="18sp" />
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/CLIENTES"
+                android:layout_width="188dp"
+                android:layout_height="49dp"
+                android:padding="5dp"
+                android:text="Clientes"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-    <LinearLayout
-        android:id="@+id/titulo_cliente"
-        android:layout_width="374dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="542dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/CLIENTES"
-            android:layout_width="188dp"
-            android:layout_height="49dp"
-            android:padding="5dp"
-            android:text="Clientes"
-            android:textSize="30sp"
-            android:textStyle="bold" />
 
-    </LinearLayout>
+        <ScrollView
+            android:id="@+id/scroll_clientes"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#D2D2D2">
 
-    <LinearLayout
-        android:id="@+id/titulo_factura"
-        android:layout_width="366dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
-        android:layout_marginBottom="279dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:id="@+id/listaClientes_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="15dp"></LinearLayout>
+        </ScrollView>
 
-        <TextView
-            android:id="@+id/FACTURAS"
-            android:layout_width="193dp"
-            android:layout_height="49dp"
-            android:padding="5dp"
-            android:text="Facturas"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/titulo_factura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/FACTURAS"
+                android:layout_width="188dp"
+                android:layout_height="49dp"
+                android:padding="5dp"
+                android:text="Factura"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scroll_facturas"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#D2D2D2">
+
+            <LinearLayout
+                android:id="@+id/listaFacturas_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="15dp"></LinearLayout>
+        </ScrollView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:padding="15dp">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="borrar"
+                android:text="Borrar" />
+        </RelativeLayout>
+
 
     </LinearLayout>
 
