@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -111,7 +112,21 @@ public class MainActivity extends AppCompatActivity {
         layout.addView(nuevoLayout, params);
 
         nuevoLayout.setOrientation(LinearLayout.HORIZONTAL);
-        nuevoLayout.setBackgroundResource(R.color.white);
+
+        String color = contenido.substring(contenido.indexOf('#')+1); //cogemos el color de contenido
+
+        switch (color){
+            case "rojo": nuevoLayout.setBackgroundResource(R.color.rojo);
+                break;
+            case "naranja": nuevoLayout.setBackgroundResource(R.color.naranja);
+                break;
+            case "amarillo": nuevoLayout.setBackgroundResource(R.color.amarillo);
+                break;
+            case "blanco": nuevoLayout.setBackgroundResource(R.color.blanco);
+                break;
+            case "gris": nuevoLayout.setBackgroundResource(R.color.gris);
+                break;
+        }
 
         nuevoLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -267,6 +282,11 @@ public class MainActivity extends AppCompatActivity {
 
         alert.show();
 
+    }
+
+    public void test(View view){
+        listaToString = preferences.getString("listaToString",null);
+        Toast.makeText(this, listaToString+"", Toast.LENGTH_LONG).show();
     }
 
 

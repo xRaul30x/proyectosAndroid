@@ -37,7 +37,7 @@ public class Agregar extends AppCompatActivity {
         paleta_layout = (RelativeLayout)findViewById(R.id.paleta_layout);
 
         listaToString = preferences.getString("listaToString",""); //lista de la base de datos
-        contenidoEdit = getIntent().getStringExtra("contenidoEdit"); //valores que el usuario quiere editar
+        contenidoEdit = getIntent().getStringExtra("contenidoEdit"); //valores que el usuario quiere editar (ejemplo#rojo)
 
         Paleta paleta = new Paleta(this);
         paleta_layout.addView(paleta);
@@ -45,7 +45,7 @@ public class Agregar extends AppCompatActivity {
         if(contenidoEdit != null){
 
             modoEditor = true;
-            cuerpo.setText(contenidoEdit.substring(0,contenidoEdit.indexOf('#')));
+            cuerpo.setText(contenidoEdit.substring(0,contenidoEdit.indexOf('#'))); //cogemos solo el texto
         }else{
 
             modoEditor = false;
@@ -61,11 +61,10 @@ public class Agregar extends AppCompatActivity {
 
             if(modoEditor){ //si estamos en modo edición, reemplazamos
 
-                listaToString = preferences.getString("listaToString",null); //nunca va  ser null
+                cuerpoToString +="#"; //le sumamos # a lo que ha puesto el usuario(ejemplo2#)
+                cuerpoToString += Paleta.colorSeleccionado; //(ejemplo2#amarillo)
 
-                contenidoEdit = contenidoEdit.substring(0,contenidoEdit.indexOf('#')+1); //lo que buscamos en la base de datos, target (ejemplo#)
-                cuerpoToString +="#"; //lo que ha puesto el usuario, sustituto del target (ejemplo2+#)
-                String replaceInLista = listaToString.replace(contenidoEdit,cuerpoToString); //reemplazamos el target por lo que ha puesto el usuario
+                String replaceInLista = listaToString.replace(contenidoEdit,cuerpoToString); //reemplazamos la info del intent (ejemplo#rojo) por lo que ha puesto el usuario (ejemplo2#amarillo)
 
                 editor.putString("listaToString",replaceInLista); //aplastamos la lista que había en configuración
                 editor.commit();
@@ -75,10 +74,11 @@ public class Agregar extends AppCompatActivity {
 
             }else{ //si no estamos en modo edición, añadimos
 
-                //añadimos # para hacer cada nota única y así no alterar las coincidencias en otras notas
+                //# es el separador entre texto y color
                 cuerpoToString += "#";
+                cuerpoToString += Paleta.colorSeleccionado;
 
-                listaToString = listaToString + cuerpoToString + ","; //añadimos lo que haya puesto el usuario y una coma
+                listaToString += cuerpoToString + ","; //añadimos lo que haya puesto el usuario y una coma
 
                 editor.putString("listaToString",listaToString); //aplastamos la lista que había en configuración
                 editor.commit();

@@ -3,15 +3,20 @@ package com.example.todolist;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Shader;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 public class Paleta extends View implements View.OnTouchListener {
 
     int ancho, alto;
-    int pos;
     int unidad;
+
+    int pos;
     boolean[] pulsadas;
+    String[] colores;
+    static String colorSeleccionado;
 
     public Paleta(Context context) {
         super(context);
@@ -19,12 +24,16 @@ public class Paleta extends View implements View.OnTouchListener {
 
         pulsadas = new boolean[5];
 
+        //if(calidos)
+        colores = new String[]{"rojo", "naranja", "amarillo", "blanco", "gris"};
+
         for(int i=0;i<pulsadas.length;i++){
             pulsadas[i]=false;
         }
 
         pos = 3;
         pulsadas[pos] = true;
+        colorSeleccionado = colores[pos];
     }
 
     @Override
@@ -54,24 +63,20 @@ public class Paleta extends View implements View.OnTouchListener {
         bordes.setARGB(255,0,0,0);
         bordes.setStyle(Paint.Style.STROKE);
         bordes.setStrokeWidth(5);
-        canvas.drawRect(1, 1,ancho-1,alto-1,bordes);
-
+        canvas.drawRect(1, 1,ancho-1,alto-1,bordes); //borde
 
         for(int i = 0; i < pulsadas.length; i++){
 
-            canvas.drawLine(unidad*i, 0, unidad*i, alto, bordes); //linea
+            canvas.drawLine(unidad*i, 0, unidad*i, alto, bordes); //lineas
         }
 
-
         marcarColor(canvas,pos);
-
-
     }
 
     private void marcarColor(Canvas canvas, int pos) {
 
         Paint marco = new Paint();
-        marco.setARGB(255,0, 200, 0); //amarillo
+        marco.setARGB(255,0, 200, 0); //verde
         marco.setStyle(Paint.Style.STROKE);
         marco.setStrokeWidth(18);
         canvas.drawRect(unidad*pos+2,2,unidad*pos+unidad-2,alto-2,marco);
@@ -86,6 +91,7 @@ public class Paleta extends View implements View.OnTouchListener {
 
         pos = (int) event.getX()/unidad;
         pulsadas[pos] = true;
+        colorSeleccionado = colores[pos];
 
         invalidate();
         return true;

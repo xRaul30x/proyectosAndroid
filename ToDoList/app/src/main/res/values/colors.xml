@@ -6,4 +6,10 @@
     <color name="noteBackBlue">#97D8CA</color>
     <color name="blue">#287DC3</color>
     <color name="white">#ffffff</color>
+
+    <color name="rojo">#ff2e2e</color>
+    <color name="naranja">#ff9e00</color>
+    <color name="amarillo">#ffff27</color>
+    <color name="blanco">#ffffff</color>
+    <color name="gris">#C2C2C2</color>
 </resources>

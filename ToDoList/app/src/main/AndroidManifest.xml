@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Agregar" android:noHistory="true"
-            android:windowSoftInputMode="adjustNothing">
+            android:windowSoftInputMode="adjustPan">
 
         </activity>
         <activity android:name=".Configuracion" android:noHistory="true"></activity>
@@ -26,3 +26,11 @@
     </application>
 
 </manifest>
+
+<!--
+    android:windowSoftInputMode="adjustNothing"
+    android:windowSoftInputMode="adjustPan"
+    android:windowSoftInputMode="adjustPan|adjustResize"
+
+
+-->
