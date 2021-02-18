@@ -13,27 +13,35 @@ public class Paleta extends View implements View.OnTouchListener {
     int ancho, alto;
     int unidad;
 
-    int pos;
+    static int pos;
     boolean[] pulsadas;
     String[] colores;
-    static String colorSeleccionado;
 
     public Paleta(Context context) {
         super(context);
         this.setOnTouchListener(this);
 
-        pulsadas = new boolean[5];
+        pos = 3;
+        inicializacion();
+    }
 
-        //if(calidos)
+    public Paleta(Context context, int posDefault) {
+        super(context);
+        this.setOnTouchListener(this);
+
+        pos = posDefault;
+        inicializacion();
+    }
+
+    public void inicializacion(){
+        pulsadas = new boolean[5];
         colores = new String[]{"rojo", "naranja", "amarillo", "blanco", "gris"};
 
         for(int i=0;i<pulsadas.length;i++){
             pulsadas[i]=false;
         }
 
-        pos = 3;
         pulsadas[pos] = true;
-        colorSeleccionado = colores[pos];
     }
 
     @Override
@@ -91,7 +99,6 @@ public class Paleta extends View implements View.OnTouchListener {
 
         pos = (int) event.getX()/unidad;
         pulsadas[pos] = true;
-        colorSeleccionado = colores[pos];
 
         invalidate();
         return true;

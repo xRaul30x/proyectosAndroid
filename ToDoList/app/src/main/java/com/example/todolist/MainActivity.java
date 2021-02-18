@@ -49,10 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
         actualizarPantalla(); //actualiza nuestro array a través de la bd y tambien los layouts
 
-        //Toast toast = Toast.makeText(this.getApplicationContext(), "BIENVENIDO", Toast.LENGTH_SHORT);
-        //toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL,0,0);
-        //toast.show();
-
     }
 
     @Override
@@ -116,15 +112,15 @@ public class MainActivity extends AppCompatActivity {
         String color = contenido.substring(contenido.indexOf('#')+1); //cogemos el color de contenido
 
         switch (color){
-            case "rojo": nuevoLayout.setBackgroundResource(R.color.rojo);
+            case "0": nuevoLayout.setBackgroundResource(R.color.rojo);
                 break;
-            case "naranja": nuevoLayout.setBackgroundResource(R.color.naranja);
+            case "1": nuevoLayout.setBackgroundResource(R.color.naranja);
                 break;
-            case "amarillo": nuevoLayout.setBackgroundResource(R.color.amarillo);
+            case "2": nuevoLayout.setBackgroundResource(R.color.amarillo);
                 break;
-            case "blanco": nuevoLayout.setBackgroundResource(R.color.blanco);
+            case "3": nuevoLayout.setBackgroundResource(R.color.blanco);
                 break;
-            case "gris": nuevoLayout.setBackgroundResource(R.color.gris);
+            case "4": nuevoLayout.setBackgroundResource(R.color.gris);
                 break;
         }
 

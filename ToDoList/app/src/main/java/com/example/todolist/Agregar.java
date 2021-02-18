@@ -25,6 +25,7 @@ public class Agregar extends AppCompatActivity {
 
     String contenidoEdit;
     boolean modoEditor;
+    int posColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +40,19 @@ public class Agregar extends AppCompatActivity {
         listaToString = preferences.getString("listaToString",""); //lista de la base de datos
         contenidoEdit = getIntent().getStringExtra("contenidoEdit"); //valores que el usuario quiere editar (ejemplo#rojo)
 
-        Paleta paleta = new Paleta(this);
-        paleta_layout.addView(paleta);
-
         if(contenidoEdit != null){
 
             modoEditor = true;
+            posColor = Integer.parseInt(contenidoEdit.substring(contenidoEdit.indexOf('#')+1));
             cuerpo.setText(contenidoEdit.substring(0,contenidoEdit.indexOf('#'))); //cogemos solo el texto
         }else{
 
+            posColor = 3;
             modoEditor = false;
         }
+
+        Paleta paleta = new Paleta(this, posColor);
+        paleta_layout.addView(paleta);
 
     }
 
@@ -62,9 +65,9 @@ public class Agregar extends AppCompatActivity {
             if(modoEditor){ //si estamos en modo edición, reemplazamos
 
                 cuerpoToString +="#"; //le sumamos # a lo que ha puesto el usuario(ejemplo2#)
-                cuerpoToString += Paleta.colorSeleccionado; //(ejemplo2#amarillo)
+                cuerpoToString += Paleta.pos; //(ejemplo2#1)
 
-                String replaceInLista = listaToString.replace(contenidoEdit,cuerpoToString); //reemplazamos la info del intent (ejemplo#rojo) por lo que ha puesto el usuario (ejemplo2#amarillo)
+                String replaceInLista = listaToString.replace(contenidoEdit,cuerpoToString); //reemplazamos la info del intent (ejemplo#3) por lo que ha puesto el usuario (ejemplo2#2)
 
                 editor.putString("listaToString",replaceInLista); //aplastamos la lista que había en configuración
                 editor.commit();
@@ -76,7 +79,7 @@ public class Agregar extends AppCompatActivity {
 
                 //# es el separador entre texto y color
                 cuerpoToString += "#";
-                cuerpoToString += Paleta.colorSeleccionado;
+                cuerpoToString += Paleta.pos;
 
                 listaToString += cuerpoToString + ","; //añadimos lo que haya puesto el usuario y una coma
 
