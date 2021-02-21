@@ -57,20 +57,15 @@ public class Configuracion extends AppCompatActivity {
         }
 
         switch (orden){
-            case "Sin orden":
+            case "Última modificación":
 
-                RadioButton sinOrden = (RadioButton) findViewById(R.id.sinOrden);
-                sinOrden.setChecked(true);
+                RadioButton ultMod = (RadioButton) findViewById(R.id.ordenUltMod);
+                ultMod.setChecked(true);
                 break;
             case "Por colores":
 
                 RadioButton porColores = (RadioButton) findViewById(R.id.ordenColores);
                 porColores.setChecked(true);
-                break;
-            case "Última modificación":
-
-                RadioButton ultMod = (RadioButton) findViewById(R.id.ordenUltMod);
-                ultMod.setChecked(true);
                 break;
             case "Alfabéticamente":
 

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -43,7 +44,12 @@ public class MainActivity extends AppCompatActivity {
         preferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
-        actualizarPantalla(); //actualiza nuestro array a través de la bd y tambien los layouts
+
+        try{
+            actualizarPantalla(); //actualiza nuestro array a través de la bd y tambien los layouts
+        }catch(Exception e){
+            Toast.makeText(this, "La base de datos estaba vacía", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -51,7 +57,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() { //método que se llama cuando cambia el flujo de las actividades
         super.onResume();
 
-        actualizarPantalla();
+        try{
+            actualizarPantalla(); //actualiza nuestro array a través de la bd y tambien los layouts
+        }catch(Exception e){
+            Toast.makeText(this, "La base de datos estaba vacía", Toast.LENGTH_SHORT).show();
+        }
+        
         if(lista == null) Toast.makeText(this, "Vaya, no tienes tareas!", Toast.LENGTH_SHORT).show();
     }
 
@@ -76,17 +87,13 @@ public class MainActivity extends AppCompatActivity {
 
             //switch para ver que orden ha seleccionado el usuario
             switch (orden){
-                case "Sin orden":
+                case "Última modificación":
 
-                    sinOrden(listaSplit);
+                    colocarPorUltMod(listaSplit);
                     break;
                 case "Por colores":
 
                     ordenarPorColores(listaSplit);
-                    break;
-                case "Última modificación":
-
-                    ultimaModificacion(listaSplit);
                     break;
                 case "Alfabéticamente":
 
@@ -101,27 +108,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //------------------------------------------------MÉTODOS DE ORDENACIÓN
-    private void sinOrden(String[] listaSplit) {
-
-        for(int i=0;i<listaSplit.length;i++) {
-            lista.add(listaSplit[i]);
-        }
-
-    }
 
     private void ordenarPorColores(String[] listaSplit) {
 
-        for(int i=0;i<listaSplit.length;i++) {
-            for(int j=0;j<listaSplit.length;j++) {
-                if(listaSplit[j].substring(listaSplit[j].indexOf("#")+1).equals(String.valueOf(i))) {
-                    lista.add(listaSplit[j]);
+
+        for(int j=0;j<5;j++) { //por cada color empezando por el 0, recorremos las notas en busca de estos
+            for(int i=0;i<listaSplit.length;i++) {
+
+                if(listaSplit[i].substring(listaSplit[i].indexOf("#")+1).equals(String.valueOf(j))) { //si la nota 1 tiene el color 0, se coloca, si no se evalua la siguiente
+
+                    lista.add(listaSplit[i]);
                 }
             }
         }
 
+        //Toast.makeText(this, lista.toString()+"", Toast.LENGTH_SHORT).show();
+
     }
 
-    private void ultimaModificacion(String[] listaSplit) {
+    private void colocarPorUltMod(String[] listaSplit) {
 
         for(int i=0;i<listaSplit.length;i++) {
             lista.add(listaSplit[i]);
@@ -134,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0;i<listaSplit.length;i++) {
             lista.add(listaSplit[i]);
         }
+        Collections.sort(lista);
 
     }
     //------------------------------------------------FIN MÉTODOS DE ORDENACIÓN
@@ -236,16 +242,16 @@ public class MainActivity extends AppCompatActivity {
         }else if(estilo.equals("Colores fríos")){
             switch (color) {
                 case "0":
-                    nuevoLayout.setBackgroundResource(R.color.rojo);
-                    ch.setBackgroundResource(R.color.chRojo);
+                    nuevoLayout.setBackgroundResource(R.color.purpura);
+                    ch.setBackgroundResource(R.color.chPurpura);
                     break;
                 case "1":
-                    nuevoLayout.setBackgroundResource(R.color.naranja);
-                    ch.setBackgroundResource(R.color.chNaranja);
+                    nuevoLayout.setBackgroundResource(R.color.azul);
+                    ch.setBackgroundResource(R.color.chAzul);
                     break;
                 case "2":
-                    nuevoLayout.setBackgroundResource(R.color.amarillo);
-                    ch.setBackgroundResource(R.color.chAmarillo);
+                    nuevoLayout.setBackgroundResource(R.color.celeste);
+                    ch.setBackgroundResource(R.color.chCeleste);
                     break;
                 case "3":
                     nuevoLayout.setBackgroundResource(R.color.blanco);
@@ -259,24 +265,24 @@ public class MainActivity extends AppCompatActivity {
         }else{
             switch (color) {
                 case "0":
-                    nuevoLayout.setBackgroundResource(R.color.rojo);
-                    ch.setBackgroundResource(R.color.chRojo);
+                    nuevoLayout.setBackgroundResource(R.color.pastel1);
+                    ch.setBackgroundResource(R.color.pastel1);
                     break;
                 case "1":
-                    nuevoLayout.setBackgroundResource(R.color.naranja);
-                    ch.setBackgroundResource(R.color.chNaranja);
+                    nuevoLayout.setBackgroundResource(R.color.pastel2);
+                    ch.setBackgroundResource(R.color.pastel2);
                     break;
                 case "2":
-                    nuevoLayout.setBackgroundResource(R.color.amarillo);
-                    ch.setBackgroundResource(R.color.chAmarillo);
+                    nuevoLayout.setBackgroundResource(R.color.pastel3);
+                    ch.setBackgroundResource(R.color.pastel3);
                     break;
                 case "3":
-                    nuevoLayout.setBackgroundResource(R.color.blanco);
-                    ch.setBackgroundResource(R.color.chBlanco);
+                    nuevoLayout.setBackgroundResource(R.color.pastel4);
+                    ch.setBackgroundResource(R.color.pastel4);
                     break;
                 case "4":
-                    nuevoLayout.setBackgroundResource(R.color.gris);
-                    ch.setBackgroundResource(R.color.chGris);
+                    nuevoLayout.setBackgroundResource(R.color.pastel5);
+                    ch.setBackgroundResource(R.color.pastel5);
                     break;
             }
         }

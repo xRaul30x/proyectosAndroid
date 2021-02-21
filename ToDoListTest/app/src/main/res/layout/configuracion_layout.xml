@@ -125,23 +125,17 @@
                     android:layout_height="wrap_content">
 
                     <RadioButton
-                        android:id="@+id/sinOrden"
+                        android:id="@+id/ordenUltMod"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Sin orden"
-                        android:checked="true"/>
+                        android:checked="true"
+                        android:text="Última modificación" />
 
                     <RadioButton
                         android:id="@+id/ordenColores"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Por colores" />
-
-                    <RadioButton
-                        android:id="@+id/ordenUltMod"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Última modificación" />
 
                     <RadioButton
                         android:id="@+id/ordenAlfab"

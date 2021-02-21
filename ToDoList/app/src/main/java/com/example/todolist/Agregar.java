@@ -68,16 +68,22 @@ public class Agregar extends AppCompatActivity {
                 cuerpoToString +="#"; //le sumamos # a lo que ha puesto el usuario(ejemplo2#)
                 cuerpoToString += Paleta.pos; //(ejemplo2#1)
 
-                String replaceInLista = listaToString.replace(contenidoEdit,cuerpoToString); //reemplazamos la info del intent (ejemplo#3) por lo que ha puesto el usuario (ejemplo2#2)
+                if(listaToString.contains(cuerpoToString)){
+                    Toast.makeText(this, "Ya has escrito esa nota!!", Toast.LENGTH_SHORT).show();
 
-                replaceInLista = replaceInLista.replace(cuerpoToString+",",""); // borramos precisamente el nuevo edit para añadirlo al principio
-                replaceInLista = cuerpoToString + "," + replaceInLista;
+                }else {
 
-                editor.putString("listaToString",replaceInLista); //aplastamos la lista que había en configuración
-                editor.commit();
-                
-                Toast.makeText(this, "Editado correctamente", Toast.LENGTH_SHORT).show();
-                atras(view);
+                    String replaceInLista = listaToString.replace(contenidoEdit, cuerpoToString); //reemplazamos la info del intent (ejemplo#3) por lo que ha puesto el usuario (ejemplo2#2)
+
+                    replaceInLista = replaceInLista.replace(cuerpoToString + ",", ""); // borramos precisamente el nuevo edit para añadirlo al principio
+                    replaceInLista = cuerpoToString + "," + replaceInLista;
+
+                    editor.putString("listaToString", replaceInLista); //aplastamos la lista que había en configuración
+                    editor.commit();
+
+                    Toast.makeText(this, "Editado correctamente", Toast.LENGTH_SHORT).show();
+                    atras(view);
+                }
 
             }else{ //si no estamos en modo edición, añadimos
 
@@ -85,15 +91,21 @@ public class Agregar extends AppCompatActivity {
                 cuerpoToString += "#";
                 cuerpoToString += Paleta.pos;
 
-                listaToString = cuerpoToString + "," + listaToString; //añadimos lo que haya puesto el usuario y una coma
+                if(listaToString.contains(cuerpoToString)){
+                    Toast.makeText(this, "Ya has escrito esa nota!!", Toast.LENGTH_SHORT).show();
 
-                editor.putString("listaToString",listaToString); //aplastamos la lista que había en configuración
-                editor.commit();
+                }else {
 
-                cuerpo.setText("");
-                Toast toast = Toast.makeText(this, "Añadido correctamente", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL,0,0);
-                toast.show();
+                    listaToString = cuerpoToString + "," + listaToString; //añadimos lo que haya puesto el usuario y una coma
+
+                    editor.putString("listaToString", listaToString); //aplastamos la lista que había en configuración
+                    editor.commit();
+
+                    cuerpo.setText("");
+                    Toast toast = Toast.makeText(this, "Añadido correctamente", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+                }
             }
 
         }else{ //si no hay nada escrito...
