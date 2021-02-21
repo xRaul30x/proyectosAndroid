@@ -1,4 +1,4 @@
-package com.example.todolist;
+package com.example.todolisttest;
 
 import android.content.Context;
 import android.content.Intent;
@@ -57,15 +57,20 @@ public class Configuracion extends AppCompatActivity {
         }
 
         switch (orden){
-            case "Última modificación":
+            case "Sin orden":
 
-                RadioButton ultMod = (RadioButton) findViewById(R.id.ordenUltMod);
-                ultMod.setChecked(true);
+                RadioButton sinOrden = (RadioButton) findViewById(R.id.sinOrden);
+                sinOrden.setChecked(true);
                 break;
             case "Por colores":
 
                 RadioButton porColores = (RadioButton) findViewById(R.id.ordenColores);
                 porColores.setChecked(true);
+                break;
+            case "Última modificación":
+
+                RadioButton ultMod = (RadioButton) findViewById(R.id.ordenUltMod);
+                ultMod.setChecked(true);
                 break;
             case "Alfabéticamente":
 

@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
                 TextView respuesta = (TextView)findViewById(R.id.respuesta);
                 //respuesta.setText(seleccionado.getContentDescription());
-                respuesta.setText(seleccionado.getText().toString());
 
+                respuesta.setText(seleccionado.getText().toString());
 
 
             }

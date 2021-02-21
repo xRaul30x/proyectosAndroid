@@ -1,4 +1,4 @@
-package com.example.todolist;
+package com.example.todolisttest;
 
 import android.content.Context;
 import android.content.Intent;
@@ -51,8 +51,7 @@ public class Agregar extends AppCompatActivity {
             modoEditor = false;
         }
 
-        String estilo = preferences.getString("estilo","Colores cálidos");
-        Paleta paleta = new Paleta(this, posColor, estilo);
+        Paleta paleta = new Paleta(this, posColor);
         paleta_layout.addView(paleta);
 
     }
@@ -70,9 +69,6 @@ public class Agregar extends AppCompatActivity {
 
                 String replaceInLista = listaToString.replace(contenidoEdit,cuerpoToString); //reemplazamos la info del intent (ejemplo#3) por lo que ha puesto el usuario (ejemplo2#2)
 
-                replaceInLista = replaceInLista.replace(cuerpoToString+",",""); // borramos precisamente el nuevo edit para añadirlo al principio
-                replaceInLista = cuerpoToString + "," + replaceInLista;
-
                 editor.putString("listaToString",replaceInLista); //aplastamos la lista que había en configuración
                 editor.commit();
                 
@@ -85,7 +81,7 @@ public class Agregar extends AppCompatActivity {
                 cuerpoToString += "#";
                 cuerpoToString += Paleta.pos;
 
-                listaToString = cuerpoToString + "," + listaToString; //añadimos lo que haya puesto el usuario y una coma
+                listaToString += cuerpoToString + ","; //añadimos lo que haya puesto el usuario y una coma
 
                 editor.putString("listaToString",listaToString); //aplastamos la lista que había en configuración
                 editor.commit();
