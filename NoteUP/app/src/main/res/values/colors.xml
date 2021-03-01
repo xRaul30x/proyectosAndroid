@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="noteBackBlue">#97D8CA</color>
+    <color name="blue">#287DC3</color>
+
+    <color name="blanco">#ffffff</color>
+    <color name="gris">#cccccc</color>
+
+    <color name="chBlanco">#ebebeb</color>
+    <color name="chGris">#999999</color>
+
+    <!-- COLORES CALIDOS -->
+    <color name="rojo">#ff7070</color>
+    <color name="naranja">#ffc05c</color>
+    <color name="amarillo">#ffff99</color>
+
+    <color name="chRojo">#ff0a0a</color>
+    <color name="chNaranja">#f59700</color>
+    <color name="chAmarillo">#ffff1f</color>
+
+    <!-- COLORES FRIOS -->
+    <color name="purpura">#cbadff</color>
+    <color name="azul">#adebff</color>
+    <color name="celeste">#d4ffff</color>
+
+    <color name="chPurpura">#a570ff</color>
+    <color name="chAzul">#70dbff</color>
+    <color name="chCeleste">#99ffff</color>
+
+    <!-- COLORES PASTEL -->
+    <color name="pastel1">#8df7c4</color>
+    <color name="pastel2">#f9b5ac</color>
+    <color name="pastel3">#94f0e8</color>
+    <color name="pastel4">#f5ff83</color>
+    <color name="pastel5">#f3a5bf</color>
+
+    <color name="chDefault">#8bd4f8</color>
+</resources>

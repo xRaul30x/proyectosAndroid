@@ -87,7 +87,7 @@
                 android:layout_width="188dp"
                 android:layout_height="49dp"
                 android:padding="5dp"
-                android:text="Factura"
+                android:text="Facturas"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -118,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="borrar"
-                android:text="Borrar" />
+                android:text="Borrar datos" />
         </RelativeLayout>
 
 

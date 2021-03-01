@@ -48,11 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void guardarCliente(View view) {
         clientes = new GestorClientes(this, "clientes", null, 1);
-        //facturas = new GestorFacturas(this, "facturas", null, 1);
-        //ConsultarFacturas consultarFacturas = new ConsultarFacturas(this, "ConsultarFacturas", null, 1);
 
         db = clientes.getWritableDatabase();
-        //db2 = facturas.getWritableDatabase();
 
         if (db != null) {
 
@@ -83,6 +80,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void guardarFactura(View view) { //num INTEGER PRIMARY KEY,dni INTEGER,concepto TEXT,valor DOUBLE
+
+        facturas = new GestorFacturas(this, "facturas", null, 1);
+
+        db2 = facturas.getWritableDatabase();
+
         if (db2 != null) {
             try {
 
@@ -91,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
                 String conceptoString = concepto.getText().toString();
                 double valorDbl = Double.parseDouble(valor.getText().toString());
 
-                db.execSQL("INSERT INTO Facturas (dni, nombre, direccion, tfno) " + "VALUES("+numInt+", "+dni2Int+", '"+conceptoString+"', "+valorDbl+")");
-                db.close();
+                db2.execSQL("INSERT INTO Facturas (num, dni, concepto, valor) " + "VALUES("+numInt+", "+dni2Int+", '"+conceptoString+"', "+valorDbl+")");
+                db2.close();
 
                 Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show();
 
@@ -102,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
                 valor.setText("");
             }catch(Exception e){
 
+                e.printStackTrace();
+                Log.e("error","error");
                 Toast.makeText(this, "Faltan datos por rellenar o el dni estaba duplicado", Toast.LENGTH_SHORT).show();
             }
         }

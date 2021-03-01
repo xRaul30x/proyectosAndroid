@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         try{
             actualizarPantalla(); //actualiza nuestro array a través de la bd y tambien los layouts
         }catch(Exception e){
-            Toast.makeText(this, "La base de datos estaba vacía", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vaya, no tienes tareas!", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -64,15 +64,21 @@ public class MainActivity extends AppCompatActivity {
         try{
             actualizarPantalla(); //actualiza nuestro array a través de la bd y tambien los layouts
         }catch(Exception e){
-            Toast.makeText(this, "La base de datos estaba vacía", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vaya, no tienes tareas!", Toast.LENGTH_SHORT).show();
         }
-        
-        if(lista == null) Toast.makeText(this, "Vaya, no tienes tareas!", Toast.LENGTH_SHORT).show();
+
+        if(lista.size() == 0) Toast.makeText(this, "Vaya, no tienes tareas!", Toast.LENGTH_SHORT).show();
+
     }
 
     public void actualizarPantalla(){
-        actualizarArray();
-        actualizarLayouts();
+        try{
+            actualizarArray();
+            actualizarLayouts();
+        }catch(Exception e){
+            Toast.makeText(this, "Vaya, no tienes tareas!", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void actualizarArray(){ //actualiza el array a través de la bd
@@ -383,7 +389,7 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
 
-        alert.setTitle("Saliendo de ToDoList!");
+        alert.setTitle("Saliendo de Note UP!");
 
         alert.setMessage("Estás seguro que quieres salir?");
 
@@ -399,11 +405,6 @@ public class MainActivity extends AppCompatActivity {
 
         alert.show();
 
-    }
-
-    public void test(View view){
-        listaToString = preferences.getString("listaToString",null);
-        Toast.makeText(this, listaToString+"", Toast.LENGTH_LONG).show();
     }
 
 
