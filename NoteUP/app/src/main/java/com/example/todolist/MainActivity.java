@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -48,13 +47,9 @@ public class MainActivity extends AppCompatActivity {
         preferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
-
         try{
             actualizarPantalla(); //actualiza nuestro array a través de la bd y tambien los layouts
-        }catch(Exception e){
-            Toast.makeText(this, "Vaya, no tienes tareas!", Toast.LENGTH_SHORT).show();
-        }
-
+        }catch(Exception e){}
     }
 
     @Override
@@ -63,27 +58,29 @@ public class MainActivity extends AppCompatActivity {
 
         try{
             actualizarPantalla(); //actualiza nuestro array a través de la bd y tambien los layouts
-        }catch(Exception e){
-            Toast.makeText(this, "Vaya, no tienes tareas!", Toast.LENGTH_SHORT).show();
-        }
+        }catch(Exception e){}
 
-        if(lista.size() == 0) Toast.makeText(this, "Vaya, no tienes tareas!", Toast.LENGTH_SHORT).show();
+        comprobarSiEstaVacia();
 
     }
 
+    private void comprobarSiEstaVacia() {
+
+        String listaToStringAux = preferences.getString("listaToString",null);
+        if(listaToStringAux == null || listaToStringAux == "") Toast.makeText(this, "Vaya! No tienes tareas...", Toast.LENGTH_SHORT).show();
+    }
+
     public void actualizarPantalla(){
+
         try{
             actualizarArray();
             actualizarLayouts();
-        }catch(Exception e){
-            Toast.makeText(this, "Vaya, no tienes tareas!", Toast.LENGTH_SHORT).show();
-        }
+        }catch(Exception e){}
 
     }
 
     public void actualizarArray(){ //actualiza el array a través de la bd
 
-        //al entrar o actualizar vaciamos los arrays
         lista = new ArrayList<>();
         listaChbx = new ArrayList<>();
 
@@ -320,6 +317,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         editor.commit();
+        comprobarSiEstaVacia();
 
     }
 
@@ -359,6 +357,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.commit();
 
                 actualizarPantalla();
+                comprobarSiEstaVacia();
             }
         });
 
