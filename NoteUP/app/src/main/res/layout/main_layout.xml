@@ -115,7 +115,7 @@
             </RelativeLayout>
 
             <Button
-                android:id="@+id/cancelar"
+                android:id="@+id/salir"
                 android:layout_width="215dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

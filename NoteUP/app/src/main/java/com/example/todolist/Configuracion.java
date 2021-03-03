@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -97,9 +98,33 @@ public class Configuracion extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void acercade(View view){
+        Intent intent = new Intent(this, AcercaDe.class);
+        startActivity(intent);
+    }
+
+    public void ayuda(View view){
+        Intent intent = new Intent(this, Ayuda.class);
+        startActivity(intent);
+    }
+
     public void atras(View view){
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) { //botón atrás del menu de navegación del movil
+
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+
+            return true;
+        }else{
+            return super.onKeyUp(keyCode, event);
+        }
     }
 }

@@ -3,11 +3,14 @@ package com.example.todolist;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -20,6 +23,7 @@ public class Agregar extends AppCompatActivity {
 
     EditText cuerpo;
     RelativeLayout paleta_layout;
+    LinearLayout layout;
     String cuerpoToString;
     String listaToString;
 
@@ -30,6 +34,8 @@ public class Agregar extends AppCompatActivity {
     String separador = "&"; //separador entre notas
     String separadorColor = "#"; //separador nota-color
 
+    boolean prioridad;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,15 +45,33 @@ public class Agregar extends AppCompatActivity {
         editor = preferences.edit();
         cuerpo = (EditText)findViewById(R.id.cuerpo);
         paleta_layout = (RelativeLayout)findViewById(R.id.paleta_layout);
+        layout = (LinearLayout) findViewById(R.id.layout);
 
         listaToString = preferences.getString("listaToString",""); //lista de la base de datos
         contenidoEdit = getIntent().getStringExtra("contenidoEdit"); //valores que el usuario quiere editar (ejemplo#rojo)
+        prioridad = false;
 
         if(contenidoEdit != null){
 
             modoEditor = true;
             posColor = Integer.parseInt(contenidoEdit.substring(contenidoEdit.indexOf(separadorColor)+1)); //cogemos el color
             cuerpo.setText(contenidoEdit.substring(0,contenidoEdit.indexOf(separadorColor))); //cogemos el texto
+
+            //boton de prioridad
+            Button btnPrioridad = new Button(this);
+            btnPrioridad.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    prioridad = true;
+                    Toast.makeText(Agregar.this, "Prioridad agregada!", Toast.LENGTH_SHORT).show();
+                    guardar(v);
+                }
+            });
+
+            btnPrioridad.setBackgroundResource(R.color.blue);
+            btnPrioridad.setText("NOTE UP!");
+            btnPrioridad.setTextColor(Color.WHITE);
+            layout.addView(btnPrioridad);
         }else{
 
             posColor = 3;
@@ -72,8 +96,15 @@ public class Agregar extends AppCompatActivity {
                 cuerpoToString += Paleta.pos; //(ejemplo2#1)
 
                 if(listaToString.contains(cuerpoToString)){
-                    Toast.makeText(this, "Ya has escrito esa nota!!", Toast.LENGTH_SHORT).show();
 
+                    if(prioridad){
+
+                        darPrioridad();
+                        prioridad = false;
+                        //atras(view);
+                    }else{
+                        Toast.makeText(this, "Ya has escrito esa nota!!", Toast.LENGTH_SHORT).show();
+                    }
                 }else {
 
                     if(!caracterProhibido()){
@@ -135,6 +166,15 @@ public class Agregar extends AppCompatActivity {
         Toast toast = Toast.makeText(this, "Añadido correctamente", Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
         toast.show();
+    }
+
+    private void darPrioridad(){
+        String replaceInLista = listaToString.replace(contenidoEdit + separador, ""); //borramos en la lista el contenido del intent
+
+        replaceInLista = contenidoEdit + separador + replaceInLista; //añadimos al principio de la lista
+
+        editor.putString("listaToString", replaceInLista); //aplastamos la lista que había en configuración
+        editor.commit();
     }
 
     private void reemplazarEnBD(View view) {
