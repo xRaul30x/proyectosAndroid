@@ -3,6 +3,7 @@ package com.example.sqlite_ejercicio;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -93,15 +94,22 @@ public class MainActivity extends AppCompatActivity {
                 String conceptoString = concepto.getText().toString();
                 double valorDbl = Double.parseDouble(valor.getText().toString());
 
-                db2.execSQL("INSERT INTO Facturas (num, dni, concepto, valor) " + "VALUES("+numInt+", "+dni2Int+", '"+conceptoString+"', "+valorDbl+")");
-                db2.close();
+                if(buscarClientePorDni(dni2Int)){
+                    db2.execSQL("INSERT INTO Facturas (num, dni, concepto, valor) " + "VALUES("+numInt+", "+dni2Int+", '"+conceptoString+"', "+valorDbl+")");
+                    db2.close();
 
-                Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show();
 
-                num.setText("");
-                dni2.setText("");
-                concepto.setText("");
-                valor.setText("");
+                    num.setText("");
+                    dni2.setText("");
+                    concepto.setText("");
+                    valor.setText("");
+                }else{
+
+                    Toast.makeText(this, "No hay clientes con ese dni", Toast.LENGTH_SHORT).show();
+                }
+
+
             }catch(Exception e){
 
                 e.printStackTrace();
@@ -109,6 +117,37 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Faltan datos por rellenar o el dni estaba duplicado", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public boolean buscarClientePorDni(int dni){
+            clientes = new GestorClientes(this, "clientes", null, 1);
+            boolean encontrado = false;
+
+            db = clientes.getReadableDatabase();
+
+            if (db != null) {
+
+                try {
+
+                    Cursor c = db.rawQuery("SELECT * FROM Clientes WHERE dni='"+dni+"'",null);
+
+                    if(c.moveToFirst()){ //si podemos encontrar el primer dato en el cursor entonces return true
+
+                        return true;
+                    }else{
+
+                        return false;
+                    }
+
+                }catch(Exception e){
+
+                    e.printStackTrace();
+                    Log.e("error","error");
+                    Toast.makeText(this, "Error al buscar el cliente...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            return encontrado;
     }
 
     public void visualizar(View view) {

@@ -8,13 +8,14 @@ import androidx.annotation.Nullable;
 
 public class GestorFacturas extends SQLiteOpenHelper {
 
-    String sqlTablaFacturas = "CREATE TABLE Facturas (num INTEGER PRIMARY KEY,dni INTEGER,concepto TEXT,valor DOUBLE)";
-    String sqlMostrarFacturas = "SELECT * FROM Facturas";
+    String sqlTablaFacturas;
+    String sqlMostrarFacturas;
 
     public GestorFacturas(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
 
-
+        sqlTablaFacturas = "CREATE TABLE Facturas (num INTEGER PRIMARY KEY,dni INTEGER,concepto TEXT,valor DOUBLE)";
+        sqlMostrarFacturas = "SELECT * FROM Facturas";
     }
 
     @Override

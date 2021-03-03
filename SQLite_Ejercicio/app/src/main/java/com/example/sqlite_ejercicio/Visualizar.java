@@ -42,6 +42,7 @@ public class Visualizar extends AppCompatActivity {
         db = clientes.getReadableDatabase();
         db2 = facturas.getReadableDatabase();
         c = db.rawQuery(" SELECT * FROM Clientes ", null);
+        c2 = db2.rawQuery(" SELECT * FROM Facturas ", null);
 
         actualizarLayoutClientes();
     }
@@ -83,8 +84,9 @@ public class Visualizar extends AppCompatActivity {
         cliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(Visualizar.this, contenido+"", Toast.LENGTH_SHORT).show();
-                String dni = contenido.substring(contenido.indexOf(',')+2,contenido.indexOf(',')+3);
+
+                String[] contenidoSplit = contenido.split(", ");
+                int dni = Integer.parseInt(contenidoSplit[1]);
                 getFacturas(dni);
             }
         });
@@ -93,28 +95,32 @@ public class Visualizar extends AppCompatActivity {
         listaCliente.addView(cliente);
     }
 
-    public void getFacturas(String dni){
-        c2 = db2.rawQuery(" SELECT * FROM Facturas WHERE dni='"+dni+"' ", null);
+    public void getFacturas(int dni){
+        c2 = db2.rawQuery(" SELECT * FROM Facturas WHERE dni="+dni, null);
 
         if(c2 != null){
             listaFacturas.removeAllViewsInLayout(); //primero borramos las que hubiese
-            //.makeText(this, "Mostrando las facturas de [dni="+dni+"]", Toast.LENGTH_SHORT).show();
-
-            Toast toast = Toast.makeText(this, "Mostrando las facturas de [dni="+dni+"]", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.BOTTOM,0,0);
-            toast.show();
 
             if (c2.moveToFirst())
             {
+                Toast toast = Toast.makeText(this, "Mostrando las facturas de [dni="+dni+"]", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.BOTTOM,0,0);
+                toast.show();
+
                 //Recorremos el cursor hasta que no haya más registros
                 do
                 {
                     int num= c2.getInt(0);
+                    dni = c2.getInt(1);
                     String concepto = c2.getString(2);
                     Double valor = c2.getDouble(3);
                     addFactura(num+", "+dni+", "+concepto+", "+valor);
 
                 } while(c2.moveToNext());// Iteramos sobre los resultados obtenidos.
+            }else{
+                Toast toast = Toast.makeText(this, "El cliente [dni="+dni+"] no tiene facturas", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.BOTTOM,0,0);
+                toast.show();
             }
         }else{
             Toast.makeText(this, "Nada que mostrar", Toast.LENGTH_SHORT).show();
@@ -142,13 +148,27 @@ public class Visualizar extends AppCompatActivity {
 
     public void borrar(View view){
         //borar y actualizar layouts
-        c = db.rawQuery(" delete from Clientes  ", null);
-        c2 = db2.rawQuery(" delete from Facturas  ", null);
+        c = db.rawQuery("delete from Clientes", null);
+        c2 = db2.rawQuery("delete from Facturas", null);
+        if(c != null) {
+            if (c.moveToFirst()) {
+                Toast.makeText(this, "No se han borrado los clientes", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "Se han borrado los clientes", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if(c2 != null) {
+            if (c2.moveToFirst()) {
+                Toast.makeText(this, "No se han borrado las facturas", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "Se han borrado las facturas", Toast.LENGTH_SHORT).show();
+            }
+        }
 
         actualizarLayoutClientes();
         listaFacturas.removeAllViewsInLayout();
 
-        Toast toast = Toast.makeText(this, "Clientes borrados de la base de datos", Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(this, "Datos borrados de la base de datos", Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.BOTTOM,0,0);
         toast.show();
     }
@@ -163,4 +183,11 @@ Cursor c = db.rawQuery(" SELECT NIA,nombre FROM Alumnos
 WHERE nombre=‘FRANK' ", null);
 
 
+        if(c != null) {
+            if (c.moveToFirst()) {
+                Toast.makeText(this, "No se han borrado los clientes", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "Se han borrado los clientes", Toast.LENGTH_SHORT).show();
+            }
+        }
  */
