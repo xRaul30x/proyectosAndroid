@@ -46,7 +46,69 @@
             android:layout_height="565dp"
             android:layout_weight="3"
             android:background="#D2D2D2"
-            android:padding="25dp" />
+            android:padding="15dp">
+
+            <LinearLayout
+                android:id="@+id/orden_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Utilización básica"
+                    android:textColor="#000000"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Añadir una nota: Botón '+' de la parte superior derecha de la pantalla de inicio.\nBorrar una nota: Click en el recuadro que hay a la izquierda de cada nota.\nEditar una nota: Click en la nota que quieres editar.\nSe puede cambiar el color de la nota a través del menú de configuración (si quieres cambiar el color general) o al editar cada nota (para cambiar el color específico)."
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Organización"
+                    android:textColor="#000000"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Puedes ordenar las notas por 'Última modificación', 'Por colores' y 'Alfabéticamente'. Si están 'Por colores', las notas del mismo color se ordenarán por su última modificación. Si quieres que una nota se coloque por encima de las demás de su categoría, edítala y pulsa NOTE UP!."
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Consejos"
+                    android:textColor="#000000"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Al editar una nota, si pulsas 'NOTE UP!' sin cambiarla, solo subes la prioridad de esa nota, pero si has cambiado algo, al pulsar el botón se guardarán los cambios como si la hubieses añadido y serás redirigido a la pantalla de inicio.\nNo deslices el dedo por la paleta de colores o la aplicación podría detenerse.\nEn el modo 'Alfabéticamente' no puedes darle prioridad a las notas."
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/pie"

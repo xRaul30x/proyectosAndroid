@@ -168,7 +168,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="acercade"
-                        android:text="Acerca de" />
+                        android:text="Acerca de"
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/ayuda"
@@ -176,7 +177,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="ayuda"
-                        android:text="Ayuda" />
+                        android:text="Ayuda"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <RelativeLayout
@@ -186,9 +188,9 @@
 
                     <ImageView
                         android:id="@+id/imageView"
-                        android:layout_width="104dp"
-                        android:layout_height="92dp"
-                        app:srcCompat="@mipmap/noteupicon2" />
+                        android:layout_width="188dp"
+                        android:layout_height="103dp"
+                        app:srcCompat="@drawable/fondo" />
                 </RelativeLayout>
 
             </LinearLayout>
